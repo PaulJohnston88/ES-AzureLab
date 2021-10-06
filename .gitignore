@@ -27,3 +27,21 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+# Ignore any files with .ignore. in the filename
+*.ignore.*
+
+# Ignore macOS .DS_Store files which are generated automatically by Finder.
+.DS_Store
+
+# Ignore Visual Studio Code config
+**/.vscode/*
+.gitignore
+
+# Ignore SSH Keys
+id_rsa.pub
+id_rsa
+id_dsa.pub
+id_dsa
+*.pem
+*.key

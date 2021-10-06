@@ -1,0 +1,20 @@
+{
+    "extend_es_landing_zones": {
+      "policy_assignments": ["Deny-Resource-Locations"],
+      "policy_definitions": [],
+      "policy_set_definitions": [],
+      "role_definitions": [],
+      "archetype_config": {
+        "parameters": {
+          "Deny-Resource-Locations": {
+            "listOfAllowedLocations": ["west europe", "north europe"]
+          }
+        },
+        "access_control": {
+          "Owner":[
+            "8d23e9d9-13bc-4f24-b4c7-7e01ef8dd768"
+          ]
+        }
+      }
+    }
+  }
