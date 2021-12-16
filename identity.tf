@@ -78,10 +78,11 @@ resource azurerm_subnet_network_security_group_association "deploy" {
 
 resource "azuread_group" "dc_admins" {
   display_name = "AAD DC Administrators"
+  security_enabled = true
 }
 
 resource "azuread_user" "admin" {
-  user_principal_name = "dc-admin@$hashicorp-example.net"
+  user_principal_name = "dc-admin@pjpfe.co.uk"
   display_name        = "DC Administrator"
   password            = "Pa55w0Rd!!1"
 }
