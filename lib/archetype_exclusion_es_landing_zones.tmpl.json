@@ -4,7 +4,9 @@
         "Deny-Priv-Escalation-AKS",
         "Deny-Priv-Containers-AKS",
         "Deny-http-Ingress-AKS",
-        "Deny-Subnet-Without-Nsg"
+        "Deny-Subnet-Without-Nsg",
+        "Enforce-TLS-SSL",
+        "Deploy-SQL-Threat"
       ],
       "policy_definitions": [],
       "policy_set_definitions": [],

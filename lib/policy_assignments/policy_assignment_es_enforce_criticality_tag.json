@@ -1,0 +1,24 @@
+{
+    "name": "Enforce-Criticality-Tag",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "apiVersion": "2019-09-01",
+    "properties": {
+      "description": "Enforce criticality tag",
+      "displayName": "Enforce criticality tag",
+      "notScopes": [],
+      "parameters": {} ,
+      "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Enforce-Criticality-Tag",
+      "scope": "${current_scope_resource_id}",
+      "enforcementMode": null,
+      "nonComplianceMessages": [
+        {
+            "message": "Criticality must be set to 1, 2 or 3"
+        }
+    ]
+
+    },
+    "location": "${default_location}",
+    "identity": {
+      "type": "SystemAssigned"
+    }
+  }

@@ -1,0 +1,44 @@
+{
+  "name": "Enforce-Criticality-Tag",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2021-06-01",
+  "scope": null,
+    "properties": {
+      "displayName": "Enforce Criticality and its value on resources",
+      "policyType": "Custom",
+      "mode": "All",
+      "description": "Enforces a required tag and its value. Does not apply to resource groups.",
+      "metadata": {
+        "version": "1.0.1",
+        "category": "Tags"
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "not": {
+                "field": "tags.criticality",
+                "match": "1"
+              }
+            },
+            {
+              "not": {
+                "field": "tags.criticality",
+                "match": "2"
+              }
+            },
+            {
+              "not": {
+                "field": "tags.criticality",
+                "match": "3"
+              }
+            }
+          ]
+        },
+        "then": {
+          "effect": "Audit"
+        }
+      },
+      "parameters": {}
+  }
+}

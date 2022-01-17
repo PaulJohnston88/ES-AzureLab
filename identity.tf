@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "deploy" {
+/* resource "azurerm_resource_group" "deploy" {
   name     = "pjpfe-rg-weu-idt-001"
   location = "West Europe"
 }
@@ -134,4 +134,4 @@ resource "azurerm_active_directory_domain_service" "example" {
     azuread_service_principal.example,
     azurerm_subnet_network_security_group_association.deploy,
   ]
-}
+} */
