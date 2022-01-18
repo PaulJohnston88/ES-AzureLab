@@ -1,0 +1,19 @@
+{
+    "name": "Johnst-Root",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "apiVersion": "2019-09-01",
+    "properties": {
+      "description": "Contains the core policies applicable to the Johnst org that need to be assigned at the Johnst Root MG",
+      "displayName": "Johnst Root",
+      "notScopes": [],
+      "parameters": {
+      },
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/pjpfe/providers/Microsoft.Authorization/policySetDefinitions/Johnst-Root",
+      "scope": "${current_scope_resource_id}",
+      "enforcementMode": null
+    },
+    "location": "${default_location}",
+    "identity": {
+      "type": "None"
+    }
+  }
