@@ -1,7 +1,7 @@
 {
     "extend_es_root": {
-      "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0"],
-      "policy_definitions": ["Enforce-Criticality-Tag"],
+      "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Enforce-Hybrid-Use-Ben"],
+      "policy_definitions": ["Enforce-Criticality-Tag","Enforce-Hybrid-Use-Ben"],
       "policy_set_definitions": [],
       "role_definitions": [],
       "archetype_config": {
