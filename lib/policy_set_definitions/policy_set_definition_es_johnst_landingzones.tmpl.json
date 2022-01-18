@@ -1,0 +1,482 @@
+{
+    "name": "Johnst-LandingZones",
+    "type": "Microsoft.Authorization/policySetDefinitions",
+    "apiVersion": "2021-06-01",
+    "scope": null,
+    "properties": {
+      "policyType": "Custom",
+      "displayName": "Johnst Landing Zones",
+      "description": "Contains the core policies applicable to the Johnst org that need to be assigned at the Landing Zones MG",
+      "metadata": {
+        "version": "1.0.0",
+        "category": "General"
+      },
+      "parameters": {
+        "APIAppShouldOnlyBeAccessibleOverHTTPS": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "API App should only be accessible over HTTPS",
+              "description": "Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks."
+            }
+        },
+        "AuthenticationShouldBeEnabledOnYourAPIApp": {
+          "type": "String",
+          "defaultValue": "AuditIfNotExists",
+          "allowedValues": [
+            "AuditIfNotExists",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Authentication should be enabled on your API app",
+            "description": "Azure App Service Authentication is a feature that can prevent anonymous HTTP requests from reaching the API app, or authenticate those that have tokens before they reach the API app"
+          }
+        },
+        "EnsureAPIAppHasClientCertificates(IncomingClientCertificates)SetToOn": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Authentication should be enabled on your API app",
+              "description": "Azure App Service Authentication is a feature that can prevent anonymous HTTP requests from reaching the API app, or authenticate those that have tokens before they reach the API app"
+            }
+        },
+        "LatestTLSVersionShouldBeUsedInYourAPIApp": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Latest TLS version should be used in your API App",
+              "description": "Upgrade to the latest TLS version"
+            }
+        },
+        "LatestTLSVersionShouldBeUsedInYourWebApp": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Latest TLS version should be used in your Web App",
+              "description": "Upgrade to the latest TLS version"
+            }
+        },
+        "LatestTLSVersionShouldBeUsedInYourFunctionApp": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Latest TLS version should be used in your Function App",
+              "description": "Upgrade to the latest TLS version"
+            }
+        },
+        "AzureCacheForRedisShouldResideWithinAVirtualNetwork": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Azure Cache for Redis should reside within a virtual network",
+              "description": "Azure Virtual Network deployment provides enhanced security and isolation for your Azure Cache for Redis, as well as subnets, access control policies, and other features to further restrict access.When an Azure Cache for Redis instance is configured with a virtual network, it is not publicly addressable and can only be accessed from virtual machines and applications within the virtual network."
+            }
+        },
+        "Only secure connections to your Azure Cache for Redis should be enabled": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Azure Cache for Redis should reside within a virtual network",
+              "description": "Azure Virtual Network deployment provides enhanced security and isolation for your Azure Cache for Redis, as well as subnets, access control policies, and other features to further restrict access.When an Azure Cache for Redis instance is configured with a virtual network, it is not publicly addressable and can only be accessed from virtual machines and applications within the virtual network."
+            }
+        },
+        "Azure Cosmos DB accounts should have firewall rules": {
+            "type": "String",
+            "defaultValue": "Deny",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Azure Cosmos DB accounts should have firewall rules",
+              "description": "Firewall rules should be defined on your Azure Cosmos DB accounts to prevent traffic from unauthorized sources. Accounts that have at least one IP rule defined with the virtual network filter enabled are deemed compliant. Accounts disabling public access are also deemed compliant."
+            }
+        },
+        "Windows virtual machines should have Azure Monitor Agent installed": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Windows virtual machines should have Azure Monitor Agent installed",
+              "description": "Windows virtual machines should be monitored and secured through the deployed Azure Monitor Agent. The Azure Monitor Agent collects telemetry data from the guest OS. Windows virtual machines with supported OS and in supported regions are monitored for Azure Monitor Agent deployment. Learn more: https://aka.ms/AMAOverview."
+            }
+        },
+        "Windows virtual machine scale sets should have Azure Monitor Agent installed": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Windows virtual machine scale sets should have Azure Monitor Agent installed",
+              "description": "Windows virtual machine scale sets should be monitored and secured through the deployed Azure Monitor Agent. The Azure Monitor Agent collects telemetry data from the guest OS. Virtual machine scale sets with supported OS and in supported regions are monitored for Azure Monitor Agent deployment. Learn more: https://aka.ms/AMAOverview."
+            }
+        },
+        "Linux virtual machines should have Azure Monitor Agent installed": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Linux virtual machines should have Azure Monitor Agent installed",
+              "description": "Linux virtual machines should be monitored and secured through the deployed Azure Monitor Agent. The Azure Monitor Agent collects telemetry data from the guest OS. This policy will audit virtual machines with supported OS images in supported regions. Learn more: https://aka.ms/AMAOverview."
+            }
+        },
+        "Linux virtual machine scale sets should have Azure Monitor Agent installed": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Linux virtual machine scale sets should have Azure Monitor Agent installed",
+              "description": "Linux virtual machine scale sets should be monitored and secured through the deployed Azure Monitor Agent. The Azure Monitor Agent collects telemetry data from the guest OS. This policy will audit virtual machine scale sets with supported OS images in supported regions. Learn more: https://aka.ms/AMAOverview."
+            }
+        },
+        "Deploy Log Analytics extension for Linux VMs": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Deploy Log Analytics extension for Linux VMs",
+              "description": "Deploy Log Analytics extension for Linux VMs if the VM Image (OS) is in the list defined and the extension is not installed."
+            }
+        },
+        "Azure Active Directory Domain Services managed domains should use TLS 1.2 only mode": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Azure Active Directory Domain Services managed domains should use TLS 1.2 only mode",
+              "description": "Use TLS 1.2 only mode for your managed domains. By default, Azure AD Domain Services enables the use of ciphers such as NTLM v1 and TLS v1. These ciphers may be required for some legacy applications, but are considered weak and can be disabled if you don't need them. When TLS 1.2 only mode is enabled, any client making a request that is not using TLS 1.2 will fail. Learn more at https://docs.microsoft.com/azure/active-directory-domain-services/secure-your-domain."
+            }
+        },
+        "Azure SQL Database should have the minimal TLS version set to the highest version": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Azure SQL Database should have the minimal TLS version set to the highest version",
+              "description": "Setting minimal TLS version to 1.2 improves security by ensuring your Azure SQL Database can only be accessed from clients using TLS 1.2. Using versions of TLS less than 1.2 is not reccomended since they have well documented security vunerabilities."
+            }
+        },
+        "SQL Managed Instance should have the minimal TLS version of 1.2": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "SQL Managed Instance should have the minimal TLS version of 1.2",
+              "description": "Setting minimal TLS version to 1.2 improves security by ensuring your SQL Managed Instance can only be accessed from clients using TLS 1.2. Using versions of TLS less than 1.2 is not recommended since they have well documented security vulnerabilities."
+            }
+        },
+        "Web Application should only be accessible over HTTPS": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Disabled",
+              "Deny"
+            ],
+            "metadata": {
+              "displayName": "Web Application should only be accessible over HTTPS",
+              "description": "Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks."
+            }
+        },
+        "Configure Advanced Threat Protection to be enabled on Azure database for PostgreSQL servers": {
+            "type": "String",
+            "defaultValue": "DeployIfNotExists",
+            "allowedValues": [
+              "DeployIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Configure Advanced Threat Protection to be enabled on Azure database for PostgreSQL servers",
+              "description": "Enable Advanced Threat Protection on your non-Basic tier Azure database for PostgreSQL servers to detect anomalous activities indicating unusual and potentially harmful attempts to access or exploit databases."
+            }
+        },
+        "Configure Advanced Threat Protection to be enabled on Azure database for MySQL servers": {
+            "type": "String",
+            "defaultValue": "DeployIfNotExists",
+            "allowedValues": [
+              "DeployIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Configure Advanced Threat Protection to be enabled on Azure database for MySQL servers",
+              "description": "Enable Advanced Threat Protection on your non-Basic tier Azure database for MySQL servers to detect anomalous activities indicating unusual and potentially harmful attempts to access or exploit databases."
+            }
+        },
+        "Configure Advanced Threat Protection to be enabled on Azure database for MariaDB servers": {
+            "type": "String",
+            "defaultValue": "DeployIfNotExists",
+            "allowedValues": [
+              "DeployIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Configure Advanced Threat Protection to be enabled on Azure database for MariaDB servers",
+              "description": "Enable Advanced Threat Protection on your non-Basic tier Azure database for MariaDB servers to detect anomalous activities indicating unusual and potentially harmful attempts to access or exploit databases."
+            }
+        }
+      },
+      "policyDefinitions": [
+        {
+          "policyDefinitionReferenceId": "APIAppShouldOnlyBeAccessibleOverHTTPS",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b7ddfbdc-1260-477d-91fd-98bd9be789a6",
+          "parameters": {
+            "effect": {
+              "value": "[parameters('APIAppShouldOnlyBeAccessibleOverHTTPS')]"
+            }
+          },
+          "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "AuthenticationShouldBeEnabledOnYourAPIApp",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/c4ebc54a-46e1-481a-bee2-d4411e95d828",
+          "parameters": {
+            "effect": {
+              "value": "[parameters('AuthenticationShouldBeEnabledOnYourAPIApp')]"
+            }
+          },
+          "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "EnsureAPIAppHasClientCertificates(IncomingClientCertificates)SetToOn",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0c192fe8-9cbb-4516-85b3-0ade8bd03886",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('EnsureAPIAppHasClientCertificates(IncomingClientCertificates)SetToOn')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "LatestTLSVersionShouldBeUsedInYourAPIApp",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8cb6aa8b-9e41-4f4e-aa25-089a7ac2581e",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('LatestTLSVersionShouldBeUsedInYourAPIApp')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "LatestTLSVersionShouldBeUsedInYourWebApp",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f0e6e85b-9b9f-4a4b-b67b-f730d42f1b0b",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('LatestTLSVersionShouldBeUsedInYourWebApp')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "LatestTLSVersionShouldBeUsedInYourFunctionApp",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f9d614c5-c173-4d56-95a7-b4437057d193",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('LatestTLSVersionShouldBeUsedInYourFunctionApp')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "AzureCacheForRedisShouldResideWithinAVirtualNetwork",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/7d092e0a-7acd-40d2-a975-dca21cae48c4",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('AzureCacheForRedisShouldResideWithinAVirtualNetwork')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Only secure connections to your Azure Cache for Redis should be enabled",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/22bee202-a82f-4305-9a2a-6d7f44d4dedb",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Only secure connections to your Azure Cache for Redis should be enabled')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Azure Cosmos DB accounts should have firewall rules",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/862e97cf-49fc-4a5c-9de4-40d4e2e7c8eb",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Azure Cosmos DB accounts should have firewall rules')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Windows virtual machines should have Azure Monitor Agent installed",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/c02729e5-e5e7-4458-97fa-2b5ad0661f28",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Windows virtual machines should have Azure Monitor Agent installed')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Windows virtual machine scale sets should have Azure Monitor Agent installed",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/3672e6f7-a74d-4763-b138-fcf332042f8f",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Windows virtual machine scale sets should have Azure Monitor Agent installed')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Linux virtual machines should have Azure Monitor Agent installed",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1afdc4b6-581a-45fb-b630-f1e6051e3e7a",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Linux virtual machines should have Azure Monitor Agent installed')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Linux virtual machine scale sets should have Azure Monitor Agent installed",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/32ade945-311e-4249-b8a4-a549924234d7",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Linux virtual machine scale sets should have Azure Monitor Agent installed')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Deploy SQL DB transparent data encryption",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/86a912f6-9a06-4e26-b447-11b16ba8659f",
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Azure Active Directory Domain Services managed domains should use TLS 1.2 only mode",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/3aa87b5a-7813-4b57-8a43-42dd9df5aaa7",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Azure Active Directory Domain Services managed domains should use TLS 1.2 only mode')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Azure SQL Database should have the minimal TLS version set to the highest version",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/32e6bbec-16b6-44c2-be37-c5b672d103cf",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Azure SQL Database should have the minimal TLS version set to the highest version')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "SQL Managed Instance should have the minimal TLS version of 1.2",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a8793640-60f7-487c-b5c3-1d37215905c4",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('SQL Managed Instance should have the minimal TLS version of 1.2')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Web Application should only be accessible over HTTPS",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a4af4a39-4135-47fb-b175-47fbdf85311d",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Web Application should only be accessible over HTTPS')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Configure Advanced Threat Protection to be enabled on Azure database for PostgreSQL servers",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/db048e65-913c-49f9-bb5f-1084184671d3",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Configure Advanced Threat Protection to be enabled on Azure database for PostgreSQL servers')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Configure Advanced Threat Protection to be enabled on Azure database for MySQL servers",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/80ed5239-4122-41ed-b54a-6f1fa7552816",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Configure Advanced Threat Protection to be enabled on Azure database for MySQL servers')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Configure Advanced Threat Protection to be enabled on Azure database for MariaDB servers",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a6cf7411-da9e-49e2-aec0-cba0250eaf8c",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Configure Advanced Threat Protection to be enabled on Azure database for MariaDB servers')]"
+                }
+            },
+            "groupNames": []
+        }
+      ],
+      "policyDefinitionGroups": null
+    }
+  }

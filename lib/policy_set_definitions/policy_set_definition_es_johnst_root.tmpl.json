@@ -1,0 +1,182 @@
+{
+    "name": "Johnst-Root",
+    "type": "Microsoft.Authorization/policySetDefinitions",
+    "apiVersion": "2021-06-01",
+    "scope": null,
+    "properties": {
+      "policyType": "Custom",
+      "displayName": "Johnst Root",
+      "description": "Contains the core policies applicable to the Johnst org that need to be assigned at the Johnst Root MG",
+      "metadata": {
+        "version": "1.0.0",
+        "category": "General"
+      },
+      "parameters": {
+        "Automation account variables should be encrypted": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Automation account variables should be encrypted",
+              "description": "It is important to enable encryption of Automation account variable assets when storing sensitive data"
+            }
+        },
+        "Azure Cosmos DB accounts should have firewall rules": {
+            "type": "String",
+            "defaultValue": "Deny",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Azure Cosmos DB accounts should have firewall rules",
+              "description": "Firewall rules should be defined on your Azure Cosmos DB accounts to prevent traffic from unauthorized sources. Accounts that have at least one IP rule defined with the virtual network filter enabled are deemed compliant. Accounts disabling public access are also deemed compliant."
+            }
+        },
+        "Azure Event Grid topics should use private link": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Azure Event Grid topics should use private link",
+              "description": "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to your Event Grid topic instead of the entire service, you'll also be protected against data leakage risks. Learn more at: https://aka.ms/privateendpoints."
+            }
+        },
+        "An Azure Active Directory administrator should be provisioned for SQL servers": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "An Azure Active Directory administrator should be provisioned for SQL servers",
+              "description": "Audit provisioning of an Azure Active Directory administrator for your SQL server to enable Azure AD authentication. Azure AD authentication enables simplified permission management and centralized identity management of database users and other Microsoft services"
+            }
+        },
+        "Auditing on SQL server should be enabled": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Auditing on SQL server should be enabled",
+              "description": "Auditing on your SQL Server should be enabled to track database activities across all databases on the server and save them in an audit log."
+            }
+        },
+        "Key vaults should have soft delete enabled": {
+            "type": "String",
+            "defaultValue": "Audit",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Key vaults should have soft delete enabled",
+              "description": "Deleting a key vault without soft delete enabled permanently deletes all secrets, keys, and certificates stored in the key vault. Accidental deletion of a key vault can lead to permanent data loss. Soft delete allows you to recover an accidentally deleted key vault for a configurable retention period."
+            }
+        },
+        "Azure Monitor log profile should collect logs for categories write, delete, and action": {
+            "type": "String",
+            "defaultValue": "AuditIfNotExists",
+            "allowedValues": [
+              "AuditIfNotExists",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Azure Monitor log profile should collect logs for categories 'write,' 'delete,' and 'action'",
+              "description": "This policy ensures that a log profile collects logs for categories 'write,' 'delete,' and 'action'"
+            }
+        }
+      },
+      "policyDefinitions": [
+        {
+          "policyDefinitionReferenceId": "Automation account variables should be encrypted",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/3657f5a0-770e-44a3-b44e-9431ba1e9735",
+          "parameters": {
+            "effect": {
+              "value": "[parameters('Automation account variables should be encrypted')]"
+            }
+          },
+          "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "Audit VMs that do not use managed disks",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/06a78e20-9358-41c9-923c-fb736d382a4d",
+          "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Azure Cosmos DB accounts should have firewall rules",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/862e97cf-49fc-4a5c-9de4-40d4e2e7c8eb",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Azure Cosmos DB accounts should have firewall rules')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Azure Event Grid topics should use private link",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/4b90e17e-8448-49db-875e-bd83fb6f804f",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Azure Event Grid topics should use private link')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "An Azure Active Directory administrator should be provisioned for SQL servers",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1f314764-cb73-4fc9-b863-8eca98ac36e9",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('An Azure Active Directory administrator should be provisioned for SQL servers')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Auditing on SQL server should be enabled",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a6fb4358-5bf4-4ad7-ba82-2cd2f41ce5e9",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Auditing on SQL server should be enabled')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Key vaults should have soft delete enabled",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1e66c121-a66a-4b1f-9b83-0fd99bf0fc2d",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Key vaults should have soft delete enabled')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Azure Monitor log profile should collect logs for categories 'write,' 'delete,' and 'action'",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1a4e592a-6a6e-44a5-9814-e36264ca96e7",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Azure Monitor log profile should collect logs for categories write, delete, and action')]"
+                }
+            },
+            "groupNames": []
+        }
+      ],
+      "policyDefinitionGroups": null
+    }
+  }
