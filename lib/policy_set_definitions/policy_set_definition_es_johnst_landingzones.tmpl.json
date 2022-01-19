@@ -14,10 +14,11 @@
       "parameters": {
         "APIAppShouldOnlyBeAccessibleOverHTTPS": {
             "type": "String",
-            "defaultValue": "Audit",
+            "defaultValue": "Deny",
             "allowedValues": [
               "Audit",
-              "Disabled"
+              "Disabled",
+              "Deny"
             ],
             "metadata": {
               "displayName": "API App should only be accessible over HTTPS",
@@ -86,7 +87,7 @@
         },
         "AzureCacheForRedisShouldResideWithinAVirtualNetwork": {
             "type": "String",
-            "defaultValue": "Audit",
+            "defaultValue": "Deny",
             "allowedValues": [
               "Audit",
               "Deny",
@@ -99,7 +100,7 @@
         },
         "Only secure connections to your Azure Cache for Redis should be enabled": {
             "type": "String",
-            "defaultValue": "Audit",
+            "defaultValue": "Deny",
             "allowedValues": [
               "Audit",
               "Deny",
@@ -171,6 +172,18 @@
               "description": "Linux virtual machine scale sets should be monitored and secured through the deployed Azure Monitor Agent. The Azure Monitor Agent collects telemetry data from the guest OS. This policy will audit virtual machine scale sets with supported OS images in supported regions. Learn more: https://aka.ms/AMAOverview."
             }
         },
+        "Deploy SQL DB transparent data encryption": {
+          "type": "String",
+          "defaultValue": "DeployIfNotExists",
+          "allowedValues": [
+            "DeployIfNotExists",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Deploy SQL DB transparent data encryption",
+            "description": "Deploy the Transparent Data Encryption when it is not enabled in the deployment"
+          }
+      },
         "Deploy Log Analytics extension for Linux VMs": {
             "type": "String",
             "defaultValue": "AuditIfNotExists",
@@ -185,7 +198,7 @@
         },
         "Azure Active Directory Domain Services managed domains should use TLS 1.2 only mode": {
             "type": "String",
-            "defaultValue": "Audit",
+            "defaultValue": "Deny",
             "allowedValues": [
               "Audit",
               "Deny",
@@ -198,10 +211,11 @@
         },
         "Azure SQL Database should have the minimal TLS version set to the highest version": {
             "type": "String",
-            "defaultValue": "Audit",
+            "defaultValue": "Deny",
             "allowedValues": [
               "Audit",
-              "Disabled"
+              "Disabled",
+              "Deny"
             ],
             "metadata": {
               "displayName": "Azure SQL Database should have the minimal TLS version set to the highest version",
@@ -210,10 +224,11 @@
         },
         "SQL Managed Instance should have the minimal TLS version of 1.2": {
             "type": "String",
-            "defaultValue": "Audit",
+            "defaultValue": "Deny",
             "allowedValues": [
               "Audit",
-              "Disabled"
+              "Disabled",
+              "Deny"
             ],
             "metadata": {
               "displayName": "SQL Managed Instance should have the minimal TLS version of 1.2",
@@ -222,7 +237,7 @@
         },
         "Web Application should only be accessible over HTTPS": {
             "type": "String",
-            "defaultValue": "Audit",
+            "defaultValue": "Deny",
             "allowedValues": [
               "Audit",
               "Disabled",
@@ -273,7 +288,7 @@
       "policyDefinitions": [
         {
           "policyDefinitionReferenceId": "APIAppShouldOnlyBeAccessibleOverHTTPS",
-          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b7ddfbdc-1260-477d-91fd-98bd9be789a6",
+          "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-AppServiceApiApp-http",
           "parameters": {
             "effect": {
               "value": "[parameters('APIAppShouldOnlyBeAccessibleOverHTTPS')]"
@@ -403,7 +418,12 @@
         },
         {
             "policyDefinitionReferenceId": "Deploy SQL DB transparent data encryption",
-            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/86a912f6-9a06-4e26-b447-11b16ba8659f",
+            "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-Tde",
+            "parameters": {
+              "effect": {
+              "value": "[parameters('Deploy SQL DB transparent data encryption')]"
+              }
+            },
             "groupNames": []
         },
         {
@@ -418,7 +438,7 @@
         },
         {
             "policyDefinitionReferenceId": "Azure SQL Database should have the minimal TLS version set to the highest version",
-            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/32e6bbec-16b6-44c2-be37-c5b672d103cf",
+            "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Sql-minTLS",
             "parameters": {
                 "effect": {
                 "value": "[parameters('Azure SQL Database should have the minimal TLS version set to the highest version')]"
@@ -428,7 +448,7 @@
         },
         {
             "policyDefinitionReferenceId": "SQL Managed Instance should have the minimal TLS version of 1.2",
-            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a8793640-60f7-487c-b5c3-1d37215905c4",
+            "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-SqlMi-minTLS",
             "parameters": {
                 "effect": {
                 "value": "[parameters('SQL Managed Instance should have the minimal TLS version of 1.2')]"
@@ -438,7 +458,7 @@
         },
         {
             "policyDefinitionReferenceId": "Web Application should only be accessible over HTTPS",
-            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a4af4a39-4135-47fb-b175-47fbdf85311d",
+            "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-AppServiceWebApp-http",
             "parameters": {
                 "effect": {
                 "value": "[parameters('Web Application should only be accessible over HTTPS')]"

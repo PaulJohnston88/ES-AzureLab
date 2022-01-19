@@ -8,43 +8,42 @@
    provider = azurerm.connectivity
    name     = "pjpfe-rg-neu-con-001"
    location = "north europe"
- } */
+ } 
+ 
+ resource "azurerm_virtual_network" "weuvnet001" {
+   provider            = azurerm.connectivity
+   name                = "pjpfe-vnet-weu-lz-001"
+   address_space       = ["192.10.0.0/16"]
+   location            = azurerm_resource_group.rg-weu-connectivity.location
+   resource_group_name = azurerm_resource_group.rg-weu-connectivity.name
+ }
 
-# resource "azurerm_virtual_network" "weuvnet001" {
-#   provider            = azurerm.connectivity
-#   name                = "pjpfe-vnet-weu-lz-001"
-#   address_space       = ["192.10.0.0/16"]
-#   location            = azurerm_resource_group.rg-weu-connectivity.location
-#   resource_group_name = azurerm_resource_group.rg-weu-connectivity.name
-# }
+ resource "azurerm_subnet" "weuvnet001subnet001" {
+   provider             = azurerm.connectivity
+   name                 = "pjpfe-subnet-weu-core-001"
+   resource_group_name  = azurerm_resource_group.rg-weu-connectivity.name
+   virtual_network_name = azurerm_virtual_network.weuvnet001.name
+   address_prefixes     = ["192.10.1.0/24"]
+ }
 
-# resource "azurerm_subnet" "weuvnet001subnet001" {
-#   provider             = azurerm.connectivity
-#   name                 = "pjpfe-subnet-weu-core-001"
-#   resource_group_name  = azurerm_resource_group.rg-weu-connectivity.name
-#   virtual_network_name = azurerm_virtual_network.weuvnet001.name
-#   address_prefixes     = ["192.10.1.0/24"]
-# }
+ resource "azurerm_virtual_network" "neuvnet001" {
+   provider            = azurerm.connectivity
+   name                = "pjpfe-vnet-neu-lz-001"
+   address_space       = ["10.10.0.0/16"]
+   location            = azurerm_resource_group.rg-neu-connectivity.location
+   resource_group_name = azurerm_resource_group.rg-neu-connectivity.name
+ }
 
-# resource "azurerm_virtual_network" "neuvnet001" {
-#   provider            = azurerm.connectivity
-#   name                = "pjpfe-vnet-neu-lz-001"
-#   address_space       = ["10.10.0.0/16"]
-#   location            = azurerm_resource_group.rg-neu-connectivity.location
-#   resource_group_name = azurerm_resource_group.rg-neu-connectivity.name
-# }
+ resource "azurerm_subnet" "neuvnet001subnet001" {
+   provider             = azurerm.connectivity
+   name                 = "pjpfe-subnet-neu-core-001"
+   resource_group_name  = azurerm_resource_group.rg-neu-connectivity.name
+   virtual_network_name = azurerm_virtual_network.neuvnet001.name
+   address_prefixes     = ["10.10.1.0/24"]
+ }
 
-# resource "azurerm_subnet" "neuvnet001subnet001" {
-#   provider             = azurerm.connectivity
-#   name                 = "pjpfe-subnet-neu-core-001"
-#   resource_group_name  = azurerm_resource_group.rg-neu-connectivity.name
-#   virtual_network_name = azurerm_virtual_network.neuvnet001.name
-#   address_prefixes     = ["10.10.1.0/24"]
-# }
-
-/* 
  resource "azurerm_virtual_wan" "vwan" {
-  provider = azurerm.connectivity
+  provider            = azurerm.connectivity
   name                = "pjpfe-vwan-001"
   resource_group_name = azurerm_resource_group.rg-weu-connectivity.name
   location            = azurerm_resource_group.rg-weu-connectivity.location

@@ -2,10 +2,13 @@
     "extend_es_root": {
       "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Enforce-Hybrid-Use-Ben","Johnst-Root"],
       "policy_definitions": ["Enforce-Criticality-Tag","Enforce-Hybrid-Use-Ben"],
-      "policy_set_definitions": ["Johnst-LandingZones", "Johnst-Root"],
+      "policy_set_definitions": ["Johnst-LandingZones","Johnst-Root"],
       "role_definitions": [],
       "archetype_config": {
         "parameters": {
+          "Johnst-Root": {
+            "Deploys NSG flow logs and traffic analytics to Log Analytics - Workspace": "/subscriptions/b7190f8a-860a-428c-a303-7231b1eb2f60/resourceGroups/pjpfe-mgmt/providers/Microsoft.OperationalInsights/workspaces/pjpfe-la"
+          }
         },
         "access_control": {}
       }

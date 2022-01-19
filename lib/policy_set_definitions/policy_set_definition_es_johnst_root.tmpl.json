@@ -14,7 +14,7 @@
       "parameters": {
         "Automation account variables should be encrypted": {
             "type": "String",
-            "defaultValue": "Audit",
+            "defaultValue": "Deny",
             "allowedValues": [
               "Audit",
               "Deny",
@@ -27,7 +27,7 @@
         },
         "Azure Cosmos DB accounts should have firewall rules": {
             "type": "String",
-            "defaultValue": "Deny",
+            "defaultValue": "Audit",
             "allowedValues": [
               "Audit",
               "Deny",
@@ -76,7 +76,7 @@
         },
         "Key vaults should have soft delete enabled": {
             "type": "String",
-            "defaultValue": "Audit",
+            "defaultValue": "Deny",
             "allowedValues": [
               "Audit",
               "Deny",
@@ -98,6 +98,140 @@
               "displayName": "Azure Monitor log profile should collect logs for categories 'write,' 'delete,' and 'action'",
               "description": "This policy ensures that a log profile collects logs for categories 'write,' 'delete,' and 'action'"
             }
+        },
+        "AppServiceTlsVersionEffect": {
+          "type": "String",
+          "defaultValue": "Append",
+          "allowedValues": [
+            "Append",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "App Service. Appends the AppService WebApp, APIApp, Function App to enable https only",
+            "description": "App Service. Appends the AppService sites object to ensure that  HTTPS only is enabled for  server/service authentication and protects data in transit from network layer eavesdropping attacks. Please note Append does not enforce compliance use then deny."
+          }
+        },
+        "AppServiceminTlsVersion": {
+          "type": "String",
+          "defaultValue": "1.2",
+          "allowedValues": [
+            "1.2",
+            "1.0",
+            "1.1"
+          ],
+          "metadata": {
+            "displayName": "App Service. Select version minimum TLS Web App config",
+            "description": "App Service. Select version  minimum TLS version for a  Web App config to enforce"
+          }
+        },
+        "Deploys NSG flow logs and traffic analytics to Log Analytics": {
+          "type": "String",
+          "defaultValue": "Disabled",
+          "allowedValues": [
+            "DeployIfNotExists",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Deploys NSG flow logs and traffic analytics to Log Analytics",
+            "description": "Deploys NSG flow logs and traffic analytics to Log Analytics with a specfied retention period."
+          }
+        },
+        "Deploys NSG flow logs and traffic analytics to Log Analytics - Interval": {
+          "type": "Integer",
+          "defaultValue": 60,
+          "metadata": {
+            "displayName": "Traffic Analytics processing interval mins (10/60)"
+          }
+        },
+        "Deploys NSG flow logs and traffic analytics to Log Analytics - Retention": {
+          "type": "Integer",
+          "defaultValue": 5,
+          "metadata": {
+            "displayName": "Retention"
+          }
+        },
+        "Deploys NSG flow logs and traffic analytics to Log Analytics - Workspace": {
+          "type": "String",
+          "defaultValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la",
+          "metadata": {
+            "displayName": "Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.",
+            "description": "Resource ID of Log Analytics workspace",
+            "strongType": "omsWorkspace"
+          }
+        },
+        "Private endpoint should be enabled for PostgreSQL servers": {
+          "type": "String",
+          "defaultValue": "AuditIfNotExists",
+          "allowedValues": [
+            "AuditIfNotExists",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Private endpoint should be enabled for PostgreSQL servers",
+            "description": "Private endpoint connections enforce secure communication by enabling private connectivity to Azure Database for PostgreSQL. Configure a private endpoint connection to enable access to traffic coming only from known networks and prevent access from all other IP addresses, including within Azure."
+          }
+        },
+        "Private endpoint should be enabled for MariaDB servers": {
+          "type": "String",
+          "defaultValue": "AuditIfNotExists",
+          "allowedValues": [
+            "AuditIfNotExists",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Private endpoint should be enabled for MariaDB servers",
+            "description": "Private endpoint connections enforce secure communication by enabling private connectivity to Azure Database for MariaDB. Configure a private endpoint connection to enable access to traffic coming only from known networks and prevent access from all other IP addresses, including within Azure."
+          }
+        },
+        "Private endpoint should be enabled for IoT Hub": {
+          "type": "String",
+          "defaultValue": "Audit",
+          "allowedValues": [
+            "Audit",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Private endpoint should be enabled for IoT Hub",
+            "description": "Private endpoint connections enforce secure communication by enabling private connectivity to IoT Hub. Configure a private endpoint connection to enable access to traffic coming only from known networks and prevent access from all other IP addresses, including within Azure."
+          }
+        },
+        "[Preview]: Private endpoint should be configured for Key Vault": {
+          "type": "String",
+          "defaultValue": "Audit",
+          "allowedValues": [
+            "Audit",
+            "Deny",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "[Preview]: Private endpoint should be configured for Key Vault",
+            "description": "Private link provides a way to connect Key Vault to your Azure resources without sending traffic over the public internet. Private link provides defense in depth protection against data exfiltration."
+          }
+        },
+        "Private endpoint should be enabled for MySQL servers": {
+          "type": "String",
+          "defaultValue": "AuditIfNotExists",
+          "allowedValues": [
+            "AuditIfNotExists",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Private endpoint should be enabled for MySQL servers",
+            "description": "Private endpoint connections enforce secure communication by enabling private connectivity to Azure Database for MySQL. Configure a private endpoint connection to enable access to traffic coming only from known networks and prevent access from all other IP addresses, including within Azure."
+          }
+        },
+        "RDP access from the Internet should be blocked": {
+          "type": "String",
+          "defaultValue": "Deny",
+          "allowedValues": [
+            "Audit",
+            "Deny",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "RDP access from the Internet should be blocked",
+            "description": "This policy denies any network security rule that allows RDP access from Internet"
+          }
         }
       },
       "policyDefinitions": [
@@ -175,6 +309,98 @@
                 }
             },
             "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "AppServiceminTlsVersion",
+          "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Append-AppService-latestTLS",
+          "parameters": {
+            "effect": {
+              "value": "[parameters('AppServiceTlsVersionEffect')]"
+            },
+            "minTlsVersion": {
+              "value": "[parameters('AppServiceminTlsVersion')]"
+            }
+          },
+          "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "Deploys NSG flow logs and traffic analytics to Log Analytics",
+          "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Nsg-FlowLogs-to-LA",
+          "parameters": {
+            "effect": {
+              "value": "[parameters('Deploys NSG flow logs and traffic analytics to Log Analytics')]"
+            },
+            "Interval": {
+              "value": "[parameters('Deploys NSG flow logs and traffic analytics to Log Analytics - Interval')]"
+            },
+            "Retention": {
+              "value": "[parameters('Deploys NSG flow logs and traffic analytics to Log Analytics - Retention')]"
+            },
+            "Workspace": {
+              "value": "[parameters('Deploys NSG flow logs and traffic analytics to Log Analytics - Workspace')]"
+            }
+          },
+          "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "Private endpoint should be enabled for PostgreSQL servers",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0564d078-92f5-4f97-8398-b9f58a51f70b",
+          "parameters": {
+              "effect": {
+              "value": "[parameters('Private endpoint should be enabled for PostgreSQL servers')]"
+              }
+          },
+          "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "Private endpoint should be enabled for MariaDB servers",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0a1302fb-a631-4106-9753-f3d494733990",
+          "parameters": {
+              "effect": {
+              "value": "[parameters('Private endpoint should be enabled for MariaDB servers')]"
+              }
+          },
+          "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "Private endpoint should be enabled for IoT Hub",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0d40b058-9f95-4a19-93e3-9b0330baa2a3",
+          "parameters": {
+              "effect": {
+              "value": "[parameters('Private endpoint should be enabled for IoT Hub')]"
+              }
+          },
+          "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "[Preview]: Private endpoint should be configured for Key Vault",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/5f0bc445-3935-4915-9981-011aa2b46147",
+          "parameters": {
+              "effect": {
+              "value": "[parameters('[Preview]: Private endpoint should be configured for Key Vault')]"
+              }
+          },
+          "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "Private endpoint should be enabled for MySQL servers",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/7595c971-233d-4bcf-bd18-596129188c49",
+          "parameters": {
+              "effect": {
+              "value": "[parameters('Private endpoint should be enabled for MySQL servers')]"
+              }
+          },
+          "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "RDP access from the Internet should be blocked",
+          "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-RDP-From-Internet",
+          "parameters": {
+              "effect": {
+              "value": "[parameters('RDP access from the Internet should be blocked')]"
+              }
+          },
+          "groupNames": []
         }
       ],
       "policyDefinitionGroups": null

@@ -1,0 +1,18 @@
+{
+    "name": "Deploy-Nsg-FlowLogs-to-LA",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "apiVersion": "2019-09-01",
+    "properties": {
+      "description": "Deploys NSG flow logs and traffic analytics to Log Analytics with a specfied retention period.",
+      "displayName": "Deploys NSG flow logs and traffic analytics to Log Analytics",
+      "notScopes": [],
+      "parameters": {} ,
+      "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Nsg-FlowLogs-to-LA",
+      "scope": "${current_scope_resource_id}",
+      "enforcementMode": null
+    },
+    "location": "${default_location}",
+    "identity": {
+      "type": "SystemAssigned"
+    }
+  }
