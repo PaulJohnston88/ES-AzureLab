@@ -1,6 +1,6 @@
 {
     "extend_es_landing_zones": {
-      "policy_assignments": ["Deny-Resource-Locations"],
+      "policy_assignments": ["Deny-Resource-Locations","Johnst-LandingZones"],
       "policy_definitions": [],
       "policy_set_definitions": [],
       "role_definitions": [],
