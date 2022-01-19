@@ -1,6 +1,6 @@
 {
     "extend_es_root": {
-      "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Enforce-Hybrid-Use-Ben"],
+      "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Enforce-Hybrid-Use-Ben","Johnst-Root"],
       "policy_definitions": ["Enforce-Criticality-Tag","Enforce-Hybrid-Use-Ben"],
       "policy_set_definitions": ["Johnst-LandingZones", "Johnst-Root"],
       "role_definitions": [],
