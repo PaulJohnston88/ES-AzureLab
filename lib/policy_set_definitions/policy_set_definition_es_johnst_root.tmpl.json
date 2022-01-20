@@ -401,6 +401,11 @@
               }
           },
           "groupNames": []
+        },
+        {
+          "policyDefinitionReferenceId": "Enforce hybrid use benefit",
+          "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Enforce-Hybrid-Use-Ben",
+          "groupNames": []
         }
       ],
       "policyDefinitionGroups": null
