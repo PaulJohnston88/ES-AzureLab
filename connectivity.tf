@@ -59,7 +59,7 @@ resource "azurerm_virtual_hub" "vwanhubweu" {
   resource_group_name = azurerm_resource_group.rg-weu-connectivity.name
   location            = azurerm_resource_group.rg-weu-connectivity.location
   virtual_wan_id      = azurerm_virtual_wan.vwan.id
-  address_prefix      = "192.254.0.0/23"
+  address_prefix      = "192.168.0.0/23"
 }
 
 resource "azurerm_virtual_hub" "vwanhubneu" {

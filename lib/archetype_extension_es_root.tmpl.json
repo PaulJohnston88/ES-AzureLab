@@ -1,8 +1,8 @@
 {
     "extend_es_root": {
-      "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Enforce-Hybrid-Use-Ben","Johnst-Root"],
+      "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Johnst-Root","Johnst-Root-ID-Excluded"],
       "policy_definitions": ["Enforce-Criticality-Tag","Enforce-Hybrid-Use-Ben"],
-      "policy_set_definitions": ["Johnst-LandingZones","Johnst-Root"],
+      "policy_set_definitions": ["Johnst-LandingZones","Johnst-Root","Johnst-Root-Identity-Excluded","Johnst-Root-Connectivity-Excluded"],
       "role_definitions": [],
       "archetype_config": {
         "parameters": {

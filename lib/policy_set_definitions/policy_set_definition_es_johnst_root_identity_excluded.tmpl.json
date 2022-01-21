@@ -1,0 +1,55 @@
+{
+    "name": "Johnst-Root-Identity-Excluded",
+    "type": "Microsoft.Authorization/policySetDefinitions",
+    "apiVersion": "2021-06-01",
+    "scope": null,
+    "properties": {
+      "policyType": "Custom",
+      "displayName": "Johnst Root Identity Excluded",
+      "description": "Contains the core policies applicable to the Johnst org that need to be assigned at the Johnst Root MG with the Identity MG excluded",
+      "metadata": {
+        "version": "1.0.0",
+        "category": "General"
+      },
+      "parameters": {
+        "Not allowed resource types - Effect": {
+            "type": "String",
+            "defaultValue": "Deny",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Not allowed resource types - Effect",
+              "description": "Enable or disable the execution of the policy"
+            }
+        },
+        "Not allowed resource types - listOfResourceTypesNotAllowed": {
+            "type": "Array",
+            "defaultValue": ["microsoft.azureactivedirectory/b2ctenants","microsoft.azureactivedirectory/b2cDirectories","microsoft.aad/DomainServices"],
+            "metadata": {
+              "displayName": "Not allowed resource types - listOfResourceTypesNotAllowed",
+              "strongType": "resourceTypes",
+              "description": "The list of resource types that cannot be deployed."
+            }
+        }
+      },
+      "policyDefinitions": [
+        {
+          "policyDefinitionReferenceId": "Not allowed resource types",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+          "parameters": {
+            "effect": {
+                "value": "[parameters('Not allowed resource types - Effect')]"
+              },
+            "listOfResourceTypesNotAllowed": {
+                "value": "[parameters('Not allowed resource types - listOfResourceTypesNotAllowed')]"
+            }
+          },
+          "groupNames": []
+        }
+      ],
+      "policyDefinitionGroups": null
+    }
+  }

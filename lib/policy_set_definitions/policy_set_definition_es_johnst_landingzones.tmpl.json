@@ -283,6 +283,46 @@
               "displayName": "Configure Advanced Threat Protection to be enabled on Azure database for MariaDB servers",
               "description": "Enable Advanced Threat Protection on your non-Basic tier Azure database for MariaDB servers to detect anomalous activities indicating unusual and potentially harmful attempts to access or exploit databases."
             }
+        },
+        "Allowed locations": {
+          "type": "Array",
+          "defaultValue": ["EastAsia","SouthEastAsia"],
+          "metadata": {
+            "displayName": "Allowed locations",
+            "strongType": "location",
+            "description": "The list of locations that can be specified when deploying resources."
+          }
+        },
+        "Allowed locations for resource groups": {
+            "type": "Array",
+            "defaultValue": ["EastAsia","SouthEastAsia"],
+            "metadata": {
+              "displayName": "Allowed locations for resource groups",
+              "strongType": "location",
+              "description": "The list of locations that resource groups can be created in."
+            }
+        },
+        "Not allowed resource types - Effect": {
+            "type": "String",
+            "defaultValue": "Deny",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "metadata": {
+              "displayName": "Not allowed resource types - Effect",
+              "description": "Enable or disable the execution of the policy"
+            }
+        },
+        "Not allowed resource types - listOfResourceTypesNotAllowed": {
+            "type": "Array",
+            "defaultValue": ["microsoft.containerservice/containerservices","microsoft.containerregistry/registries"],
+            "metadata": {
+              "displayName": "Not allowed resource types - listOfResourceTypesNotAllowed",
+              "strongType": "resourceTypes",
+              "description": "The list of resource types that cannot be deployed."
+            }
         }
       },
       "policyDefinitions": [
@@ -492,6 +532,39 @@
             "parameters": {
                 "effect": {
                 "value": "[parameters('Configure Advanced Threat Protection to be enabled on Azure database for MariaDB servers')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Allowed locations",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+            "parameters": {
+                "listOfAllowedLocations": {
+                "value": "[parameters('Allowed locations')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Allowed locations for resource groups",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+            "parameters": {
+                "listOfAllowedLocations": {
+                "value": "[parameters('Allowed locations for resource groups')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Not allowed resource types",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Not allowed resource types - Effect')]"
+                },
+                "listOfResourceTypesNotAllowed": {
+                "value": "[parameters('Not allowed resource types - listOfResourceTypesNotAllowed')]"
                 }
             },
             "groupNames": []

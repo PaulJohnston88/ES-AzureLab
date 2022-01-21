@@ -232,6 +232,63 @@
             "displayName": "RDP access from the Internet should be blocked",
             "description": "This policy denies any network security rule that allows RDP access from Internet"
           }
+        },
+        "Managed identity should be used in your Function App": {
+          "type": "String",
+          "defaultValue": "AuditIfNotExists",
+          "allowedValues": [
+            "AuditIfNotExists",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Effect",
+            "description": "Enable or disable the execution of the policy"
+          }
+        },
+        "Managed identity should be used in your Web App": {
+          "type": "String",
+          "defaultValue": "AuditIfNotExists",
+          "allowedValues": [
+            "AuditIfNotExists",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Effect",
+            "description": "Enable or disable the execution of the policy"
+          }
+        },
+        "Managed identity should be used in your API App": {
+          "type": "String",
+          "defaultValue": "AuditIfNotExists",
+          "allowedValues": [
+            "AuditIfNotExists",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Effect",
+            "description": "Enable or disable the execution of the policy"
+          }
+        },
+        "Subnets should have a Network Security Group - Effect": {
+          "type": "String",
+          "defaultValue": "Audit",
+          "allowedValues": [
+            "Audit",
+            "Deny",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Effect",
+            "description": "Enable or disable the execution of the policy"
+          }
+        },
+        "Subnets should have a Network Security Group - ExcludedSubnets": {
+          "type": "Array",
+          "defaultValue": ["GatewaySubnet","AzureFirewallSubnet","AzureFirewallManagementSubnet"],
+          "metadata": {
+            "displayName": "Excluded Subnets",
+            "description": "Array of subnet names that are excluded from this policy"
+          }
         }
       },
       "policyDefinitions": [
@@ -406,6 +463,49 @@
           "policyDefinitionReferenceId": "Enforce hybrid use benefit",
           "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Enforce-Hybrid-Use-Ben",
           "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Managed identity should be used in your Function App",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0da106f2-4ca3-48e8-bc85-c638fe6aea8f",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Managed identity should be used in your Function App')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Managed identity should be used in your Web App",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2b9ad585-36bc-4615-b300-fd4435808332",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Managed identity should be used in your Web App')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Managed identity should be used in your API App",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/c4d441f8-f9d9-4a9e-9cef-e82117cb3eef",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Managed identity should be used in your API App')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Subnets should have a Network Security Group",
+            "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Nsg",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Subnets should have a Network Security Group - Effect')]"
+                },
+                "excludedSubnets": {
+                  "value": "[parameters('Subnets should have a Network Security Group - ExcludedSubnets')]"
+                  }
+            },
+            "groupNames": []
         }
       ],
       "policyDefinitionGroups": null
