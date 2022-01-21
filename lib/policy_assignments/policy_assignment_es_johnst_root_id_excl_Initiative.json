@@ -1,11 +1,11 @@
 {
-    "name": "Johnst-Root-ID-Excluded",
+    "name": "Johnst-Root-ID-Excl",
     "type": "Microsoft.Authorization/policyAssignments",
     "apiVersion": "2019-09-01",
     "properties": {
       "description": "Contains the core policies applicable to the Johnst org that need to be assigned at the Johnst Root MG with the Identity MG excluded",
       "displayName": "Johnst Root Identity Excluded",
-      "notScopes": [""],
+      "notScopes": ["${root_scope_resource_id}-identity"],
       "parameters": {
       },
       "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Johnst-Root-Identity-Excluded",

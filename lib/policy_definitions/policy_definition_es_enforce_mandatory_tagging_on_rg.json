@@ -1,0 +1,195 @@
+{
+    "name": "Enforce-Mandatory-TagsOnRGs",
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "apiVersion": "2021-06-01",
+    "scope": null,
+      "properties": {
+        "displayName": "Enforce Mandatory Tags on Resource Groups",
+        "policyType": "Custom",
+        "mode": "All",
+        "description": "Enforce mandatory tagging on Resource Groups",
+        "metadata": {
+          "version": "1.0.0",
+          "category": "Tags"
+        },
+        "policyRule": {
+        "if": {
+            "allOf":[
+                {            
+                "field": "type",
+                "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+                },
+                {
+                "anyof": [
+                {
+                    "field": "[concat('tags[', parameters('tag1Name'), ']')]",
+                    "notin": "[parameters('tag1Value')]"
+                },
+                {
+                    "field": "[concat('tags[', parameters('tag2Name'), ']')]",
+                    "notin": "[parameters('tag2Value')]"
+                },
+                {
+                    "field": "[concat('tags[', parameters('tag3Name'), ']')]",
+                    "notin": "[parameters('tag3Value')]"
+                },
+                {
+                    "field": "[concat('tags[', parameters('tag4Name'), ']')]",
+                    "notin": "[parameters('tag4Value')]"
+                },
+                {
+                    "field": "[concat('tags[', parameters('tag5Name'), ']')]",
+                    "notin": "[parameters('tag5Value')]"
+                },
+                {
+                    "field": "[concat('tags[', parameters('tag6Name'), ']')]",
+                    "notin": "[parameters('tag6Value')]"
+                },
+                {
+                    "field": "[concat('tags[', parameters('tag7Name'), ']')]",
+                    "notin": "[parameters('tag7Value')]"
+                },
+                {
+                    "field": "[concat('tags[', parameters('tag8Name'), ']')]",
+                    "notin": "[parameters('tag8Value')]"
+                }
+                ]
+            }
+            ]
+        },
+        "then": {
+            "effect": "deny"
+        }
+        },
+        "parameters": {
+            "tag1Name": {
+                "type": "String",
+                "metadata": {
+                "displayName": "Tag 1 Name",
+                "description": "Name of the tag, such as 'Cost Center'"
+                },
+                "defaultValue": "Cost Center"
+            },
+            "tag1Value": {
+                "type": "Array",
+                "metadata": {
+                "displayName": "Tag 1 Value",
+                "description": "Value of the tag, such as 'Joe Bloggs'"
+                }
+            },
+            "tag2Name": {
+                "type": "String",
+                "metadata": {
+                "displayName": "Tag 2 Name",
+                "description": "Name of the tag, such as 'Department'"
+                },
+                "defaultValue": "Department"
+            },
+            "tag2Value": {
+                "type": "Array",
+                "metadata": {
+                "displayName": "Tag 4 Value",
+                "description": "Value of the tag, such as 'Joe Bloggs'"
+                }
+            },     
+            "tag3Name": {
+                "type": "String",
+                "metadata": {
+                "displayName": "Tag 3 Name",
+                "description": "Name of the tag, such as 'Application Name'"
+                },
+                "defaultValue": "Application Name"
+            },
+            "tag3Value": {
+                "type": "Array",
+                "metadata": {
+                "displayName": "Tag 4 Value",
+                "description": "Value of the tag, such as 'Joe Bloggs'"
+                }
+            },     
+            "tag4Name": {
+                "type": "String",
+                "metadata": {
+                "displayName": "Tag 4 Name",
+                "description": "Name of the tag, such as 'Supported By'"
+                },
+                "defaultValue": "Supported By"
+            },
+            "tag4Value": {
+                "type": "Array",
+                "metadata": {
+                "displayName": "Tag 4 Value",
+                "description": "Value of the tag, such as 'Joe Bloggs'"
+                }
+            },     
+            "tag5Name": {
+                "type": "String",
+                "metadata": {
+                "displayName": "Tag 5 Name",
+                "description": "Name of the tag, such as 'Requestor'"
+                },
+                "defaultValue": "Requestor"
+            },
+            "tag5Value": {
+                "type": "Array",
+                "metadata": {
+                "displayName": "Tag 5 Value",
+                "description": "Value of the tag, such as 'Jane Doe'"
+                }
+            },      
+            "tag6Name": {
+                "type": "String",
+                "metadata": {
+                "displayName": "Tag 6 Name",
+                "description": "Name of the tag, such as 'Environment'"
+                },
+                "defaultValue": "Environment"
+            },
+            "tag6Value": {
+                "type": "Array",
+                "metadata": {
+                "displayName": "Tag 6 Value",
+                "description": "Value of the tag, such as 'Production'"
+                },
+                "allowedValues": [
+                "Production",
+                "Training",
+                "UAT",
+                "QA",
+                "Dev",
+                "PPOC"
+                ]
+            },      
+            "tag7Name": {
+                "type": "String",
+                "metadata": {
+                "displayName": "Tag 7 Name",
+                "description": "Name of the tag, such as 'SupportLevel'"
+                },
+                "defaultValue": "Support Level"
+            },
+            "tag7Value": {
+                "type": "Array",
+                "metadata": {
+                "displayName": "Tag 4 Value",
+                "description": "Value of the tag, such as 'Joe Bloggs'"
+                }
+            },      
+            "tag8Name": {
+                "type": "String",
+                "metadata": {
+                "displayName": "Tag 8 Name",
+                "description": "Name of the tag, such as 'Owner'"
+                },
+                "defaultValue": "Owner"
+            },
+            "tag8Value": {
+                "type": "Array",
+                "metadata": {
+                "displayName": "Tag 4 Value",
+                "description": "Value of the tag, such as 'Joe Bloggs'"
+                }
+            }
+        }
+    }
+}
