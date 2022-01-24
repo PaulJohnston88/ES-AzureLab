@@ -1,6 +1,6 @@
 {
     "extend_es_landing_zones": {
-      "policy_assignments": ["Deny-Resource-Locations","Johnst-LandingZones"],
+      "policy_assignments": ["Deny-Resource-Locations","Johnst-LandingZones","Disable-Public-Net-PaaS","Deny-NIC-NSG","LZ-Network-Locks"],
       "policy_definitions": [],
       "policy_set_definitions": [],
       "role_definitions": [],

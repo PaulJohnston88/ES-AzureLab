@@ -1,0 +1,56 @@
+{
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name":"LZ-Network-Locks",
+    "properties":{
+       "displayName":"Audit Specified Resource Type For Any Lock",
+       "description":"This policy audits the specified resource type for any lock such as 'CanNotDelete' or 'ReadOnly'.",
+       "mode":"All",
+       "metadata": {
+         "version": "1.0.0",
+         "category": "Network"
+      },
+       "parameters":{
+          "resourceTypes":{
+             "type":"Array",
+             "metadata":{
+                "description":"Azure resource types to audit for any lock",
+                "displayName":"resourceTypes"
+             },
+             "defaultValue":[
+                "microsoft.network/virtualnetworks"
+             ]
+          },
+          "lockLevel":{
+             "type":"Array",
+             "metadata":{
+                "description":"The lock level to audit for",
+                "displayName":"lockLevel"
+             },
+             "allowedValues":[
+                "ReadOnly",
+                "CanNotDelete"
+             ],
+             "defaultValue":[
+                "ReadOnly",
+                "CanNotDelete"
+             ]
+          }
+       },
+       "policyRule":{
+          "if":{
+             "field":"type",
+             "in":"[parameters('resourceTypes')]"
+          },
+          "then":{
+             "details":{
+                "existenceCondition":{
+                   "field":"Microsoft.Authorization/locks/level",
+                   "in":"[parameters('lockLevel')]"
+                },
+                "type":"Microsoft.Authorization/locks"
+             },
+             "effect":"auditIfNotExists"
+          }
+       }
+    }
+}

@@ -27,7 +27,10 @@
         },
         "Not allowed resource types - listOfResourceTypesNotAllowed": {
             "type": "Array",
-            "defaultValue": ["microsoft.network/azureFirewalls","microsoft.network/firewallPolicies","microsoft.classicnetwork/expressRouteCircuits"],
+            "defaultValue": ["microsoft.network/azureFirewalls","microsoft.network/firewallPolicies",
+              "microsoft.classicnetwork/expressRouteCircuits","microsoft.network/vpnGateways","microsoft.network/vpnGateways/natRules",
+              "microsoft.network/vpnGateways/vpnConnections","microsoft.network/vpnServerConfigurations","microsoft.network/vpnSites",
+              "microsoft.network/p2sVpnGateways"],
             "metadata": {
               "displayName": "Not allowed resource types - listOfResourceTypesNotAllowed",
               "strongType": "resourceTypes",

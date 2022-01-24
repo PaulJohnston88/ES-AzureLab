@@ -1,7 +1,9 @@
 {
     "extend_es_root": {
-      "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Johnst-Root","Johnst-Root-ID-Excl","Johnst-Root-Connect-Excl","Enforce-Mandatory-Tags"],
-      "policy_definitions": ["Enforce-Criticality-Tag","Enforce-Hybrid-Use-Ben","Enforce-Mandatory-Tags"],
+      "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Johnst-Root","Johnst-Root-ID-Excl","Johnst-Root-Connect-Excl",
+        "Enforce-Mandatory-Tags"],
+      "policy_definitions": ["Enforce-Criticality-Tag","Enforce-Hybrid-Use-Ben","Enforce-Mandatory-Tags","Deny-NIC-NSG","Core-Network-Locks",
+        "LZ-Network-Locks"],
       "policy_set_definitions": ["Johnst-LandingZones","Johnst-Root","Johnst-Root-Identity-Excluded","Johnst-Root-Connectivity-Excluded"],
       "role_definitions": [],
       "archetype_config": {
