@@ -1,0 +1,18 @@
+{
+    "name": "Deny-PE-if-Not-in-Subnet",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "apiVersion": "2019-09-01",
+    "properties": {
+      "description": "This Policy will deny the creation of Private Endpoints if not within subnets that contain a key word.",
+      "displayName": "Deny Private Endpoints if not being deployed to a specific subnet",
+      "notScopes": [],
+      "parameters": {} ,
+      "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PE-if-Not-in-Subnet",
+      "scope": "${current_scope_resource_id}",
+      "enforcementMode": null
+    },
+    "location": "${default_location}",
+    "identity": {
+      "type": "SystemAssigned"
+    }
+  }

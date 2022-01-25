@@ -1,0 +1,63 @@
+{
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "Deny-AnySource-NSG",
+    "properties": {
+        "displayName":"Deny NSGs with ANY source network configured",
+        "description":"This policy prevents you from creating an NSG with a source network of ANY",
+        "policyType": "Custom",
+        "mode":"All",
+        "metadata": {
+          "version": "1.0.0",
+          "category": "Network"
+         },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/networkSecurityGroups"
+          },
+          {
+            "count": {
+              "field": "Microsoft.Network/networkSecurityGroups/securityRules[*]",
+              "where": {
+                "allOf": [
+                  {
+                    "field": "Microsoft.Network/networkSecurityGroups/securityRules[*].sourceAddressPrefix",
+                    "equals": "*"
+                  },
+                  {
+                    "anyOf": [
+                      {
+                        "not": {
+                          "field": "Microsoft.Network/networkSecurityGroups/securityRules[*].sourceAddressPrefixes[*]",
+                          "notIn": []
+                        }
+                      },
+                      {
+                        "field": "Microsoft.Network/networkSecurityGroups/securityRules[*].sourceAddressPrefixes[*]",
+                        "exists": false
+                      }
+                    ]
+                  },
+                  {
+                    "field": "Microsoft.Network/networkSecurityGroups/securityRules[*].access",
+                    "equals": "Allow"
+                  },
+                  {
+                    "field": "Microsoft.Network/networkSecurityGroups/securityRules[*].direction",
+                    "equals": "Inbound"
+                  }
+                ]
+              }
+            },
+            "greater": 0
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

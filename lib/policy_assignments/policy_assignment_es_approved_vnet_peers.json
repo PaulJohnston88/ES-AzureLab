@@ -1,0 +1,18 @@
+{
+    "name": "Approved-VNet-Peerings",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "apiVersion": "2019-09-01",
+    "properties": {
+      "description": "This policy prevents you from peering to a VNet that's not on the list of approved VNets.",
+      "displayName": "VNet Peering is only allowed to approved VNets",
+      "notScopes": [],
+      "parameters": {} ,
+      "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Approved-VNet-Peerings",
+      "scope": "${current_scope_resource_id}",
+      "enforcementMode": null
+    },
+    "location": "${default_location}",
+    "identity": {
+      "type": "SystemAssigned"
+    }
+  }
