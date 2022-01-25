@@ -5,15 +5,15 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = ">= 2.77.0"
-      configuration_aliases = [ 
+      configuration_aliases = [
         azurerm.connectivity,
         azurerm.management,
-       ]
+      ]
     }
   }
 }
 
-  data "azurerm_client_config" "core" {}
+data "azurerm_client_config" "core" {}
 
 # Declare a standard provider block using your preferred configuration.
 # This will target the "default" Subscription and be used for the deployment of all "Core resources".
