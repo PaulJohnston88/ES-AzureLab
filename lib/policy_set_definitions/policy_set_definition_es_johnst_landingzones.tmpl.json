@@ -323,6 +323,27 @@
               "strongType": "resourceTypes",
               "description": "The list of resource types that cannot be deployed."
             }
+        },
+        "Approved-VNet-Peerings - effect": {
+            "type": "String",
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "defaultValue": "Deny",
+            "metadata": {
+              "displayName": "Effect",
+              "description": "Enable or disable the execution of the policy"
+            }
+        },
+        "Approved-VNet-Peerings - allowedVnets": {
+            "type": "Array",
+            "defaultValue": [],
+            "metadata": {
+              "displayName": "Allowed VNets",
+              "description": "Enter list of allowed VNets using a semi-colon ';' seperated list. VNets must be entered using their resource ID. Example: /subscriptions/{SubID}/resourceGroups/resourceGroupName/providers/Microsoft.Network/virtualNetworks/resourceGroupName/virtualNetworkPeerings/vnetName"
+            }
         }
       },
       "policyDefinitions": [
@@ -565,6 +586,19 @@
                 },
                 "listOfResourceTypesNotAllowed": {
                 "value": "[parameters('Not allowed resource types - listOfResourceTypesNotAllowed')]"
+                }
+            },
+            "groupNames": []
+        },
+        {
+            "policyDefinitionReferenceId": "Approved-VNet-Peerings",
+            "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+            "parameters": {
+                "effect": {
+                "value": "[parameters('Approved-VNet-Peerings - effect')]"
+                },
+                "listOfResourceTypesNotAllowed": {
+                "value": "[parameters('Approved-VNet-Peerings - allowedVnets')]"
                 }
             },
             "groupNames": []
