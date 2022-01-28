@@ -2,7 +2,7 @@
 - task: TerraformInstaller@0
   inputs:
     terraformVersion: 'latest'
-- task: TerraformTaskV2@2
+- task: TerraformInit
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -11,7 +11,7 @@
     backendAzureRmStorageAccountName: 'pjazdevopsdemostg001'
     backendAzureRmContainerName: 'es-azurelab-tf-state'
     backendAzureRmKey: 't+OOsNpYiiVyytJ0ENXV1wGS2cqSwCF3a7xTujJK78C3tsOJp7qW/BugS4ec/Ne2uOGuCR6Ex1fdm7psE4ABkg=='
-- task: TerraformTaskV2@2
+- task: TerraformValidate
   inputs:
     provider: 'azurerm'
     command: 'validate'
