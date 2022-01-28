@@ -3,7 +3,6 @@
   inputs:
     provider: 'azurerm'
     command: 'plan'
-    commandOptions: '-input=false -var="spn-client-id=$(AzDevOps-Client-ID)" -var="spn-client-secret=$(AzDevOps-Client-Secret)"'
     environmentServiceNameAzureRM: 'ES-CE-CUS-EXT-Pajohnst-Management(b7190f8a-860a-428c-a303-7231b1eb2f60)'
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
