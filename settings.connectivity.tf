@@ -78,7 +78,7 @@ locals {
         }
       }
       dns = {
-        enabled = false
+        enabled = true
         config = {
           location = null
           enable_private_link_by_service = {
@@ -122,13 +122,13 @@ locals {
             azure_file_sync                      = true
             azure_data_factory                   = true
             azure_data_factory_portal            = true
-            azure_cache_for_redis                = true
+            azure_cache_for_redis                = false
           }
           private_link_locations                                 = []
           public_dns_zones                                       = []
           private_dns_zones                                      = []
-          enable_private_dns_zone_virtual_network_link_on_hubs   = true
-          enable_private_dns_zone_virtual_network_link_on_spokes = true
+          enable_private_dns_zone_virtual_network_link_on_hubs   = false
+          enable_private_dns_zone_virtual_network_link_on_spokes = false
         }
       }
     }

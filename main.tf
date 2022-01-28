@@ -19,8 +19,10 @@ module "enterprise_scale" {
   library_path   = "${path.root}/lib"
 
   deploy_core_landing_zones    = true
-  deploy_management_resources  = true
+  deploy_management_resources  = var.deploy_management_resources
   subscription_id_management   = "b7190f8a-860a-428c-a303-7231b1eb2f60"
+  deploy_connectivity_resources = var.deploy_connectivity_resources
+  configure_connectivity_resources = local.configure_connectivity_resources
   subscription_id_connectivity = "e0583bb4-bb6c-44b8-9b39-72b0d4a1a6eb"
 
   custom_landing_zones = {
