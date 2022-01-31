@@ -2,7 +2,8 @@
     "extend_es_root": {
       "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Johnst-Root","Johnst-Root-ID-Excl","Johnst-Root-Connect-Excl"],
       "policy_definitions": ["Enforce-Criticality-Tag","Enforce-Hybrid-Use-Ben","Enforce-Mandatory-Tags","Deny-NIC-NSG","Core-Network-Locks",
-        "LZ-Network-Locks","Approved-VNet-Peerings","Deny-AnySource-NSG","Deny-PE-if-Not-in-Subnet"],
+        "LZ-Network-Locks","Approved-VNet-Peerings","Deny-AnySource-NSG","Deny-PE-if-Not-in-Subnet","Onboard-to-DSC","Deny-PE-Naming-Con",
+        "Deny-SE-Naming-Con", "Enforce-Naming-Con"],
       "policy_set_definitions": ["Johnst-LandingZones","Johnst-Root","Johnst-Root-Identity-Excluded","Johnst-Root-Connectivity-Excluded"],
       "role_definitions": ["Security-Operations","Application-Owners","Azure-Platform-Owner","Network-Management","Subscription-Owners"],
       "archetype_config": {

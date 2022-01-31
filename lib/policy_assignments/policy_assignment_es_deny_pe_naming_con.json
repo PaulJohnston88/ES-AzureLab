@@ -1,0 +1,22 @@
+{
+    "name": "Deny-PE-Naming-Con",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "apiVersion": "2019-09-01",
+    "properties": {
+      "description": "This Policy will deny the creation of Private Endpoints within subnets that contain a key word. This is useful when your subnets all follow a naming schema.",
+      "displayName": "Deny Private Endpoints in specific subnets based on a naming convention",
+      "notScopes": [],
+      "parameters": {
+          "subnetNamingConvention": {
+              "value": "JCI-NoPE"
+          }
+      } ,
+      "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PE-Naming-Con",
+      "scope": "${current_scope_resource_id}",
+      "enforcementMode": null
+    },
+    "location": "${default_location}",
+    "identity": {
+      "type": "SystemAssigned"
+    }
+  }

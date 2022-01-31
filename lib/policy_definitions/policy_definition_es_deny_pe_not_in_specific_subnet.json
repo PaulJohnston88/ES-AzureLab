@@ -16,14 +16,16 @@
           "metadata": {
             "displayName": "Allowed Subnet prefix name (i.e. pls)",
             "description": "Name of subnet where Private Endpoints are allowed to be deployed into."
-          }
+          },
+          "defaultValue": ""
         },
         "exemptedGroupIds": {
           "type": "Array",
           "metadata": {
             "displayName": "Exempted Private Endpoint Group IDs",
             "description": "The Group IDs that are exempted from this Policy (i.e. blob)"
-          }
+          },
+          "defaultValue": []
         }
       },
       "policyRule": {
