@@ -10,6 +10,10 @@ variable "root_name" {
   default = "PJPFE ES"
 }
 
+variable "deploy_core_landing_zones" {
+  type    = bool
+  default = true
+}
 variable "deploy_connectivity_resources" {
   type    = bool
   default = true
