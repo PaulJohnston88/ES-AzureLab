@@ -24,6 +24,7 @@ module "enterprise_scale" {
   deploy_connectivity_resources = var.deploy_connectivity_resources
   configure_connectivity_resources = local.configure_connectivity_resources
   subscription_id_connectivity = "e0583bb4-bb6c-44b8-9b39-72b0d4a1a6eb"
+  subscription_id_identity = "d161faf2-87a1-4b24-9425-7262dc2d83f0"
 
   custom_landing_zones = {
     "${var.root_id}-online" = {
