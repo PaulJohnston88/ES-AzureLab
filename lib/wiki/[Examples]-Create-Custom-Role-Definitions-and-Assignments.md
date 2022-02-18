@@ -2,21 +2,21 @@
 
 This page describes how to deploy Enterprise-Scale with custom policy definitions and policy set (Initiative) definitions.
 
-In this example we will use a policy named `Enforce-RG-Tags` and a  policy set definition (Initiative_) named `Deploy-SQL-Auditing` as examples of how to create and assign custom policies.
+In this example we will use a policy named `Enforce-RG-Tags` and a  policy set definition (Initiative_) named `LZ-Baseline` as examples of how to create and assign custom policies.
 
 We will update the built-in configuration by following these steps:
 
 - Create the custom policy definition file for `Enforce-RG-Tags`
 
-- Create the custom policy set definition file for `Deploy-SQL-Auditing`
+- Create the custom policy set definition file for `LZ-Baseline`
 
 - Make the custom policy definitions available for use in Azure by extending the built-in archetype for `es_root`
 
-- Create the policy assignment files for `Enforce-RG-Tags` and `Deploy-SQL-Auditing` so that they can be assigned
+- Create the policy assignment files for `Enforce-RG-Tags` and `LZ-Baseline` so that they can be assigned
 
 - Assign the custom policy definition for `Enforce-RG-Tags` at the `root` Management Group by extending the built-in archetype for `es_root`.
 
-- Assign the custom policy set definition for `Deploy-SQL-Auditing` at the `Landing Zones` Management Group by extending the built-in archetype for `es_landing_zones`.
+- Assign the custom policy set definition for `LZ-Baseline` at the `Landing Zones` Management Group by extending the built-in archetype for `es_landing_zones`.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
@@ -266,7 +266,7 @@ If you don't already have an `archetype_extension_es_root.tmpl.json` file within
   "extend_es_root": {
     "policy_assignments": [],
     "policy_definitions": ["Enforce-RG-Tags"],
-    "policy_set_definitions": ["Deploy-SQL-Auditing"],
+    "policy_set_definitions": ["LZ-Baseline"],
     "role_definitions": [],
     "archetype_config": {
       "access_control": {
@@ -290,7 +290,7 @@ You now need to assign the policy and in this example, we will assign it at `es_
   "extend_es_root": {
     "policy_assignments": ["Enforce-RG-Tags"],
     "policy_definitions": ["Enforce-RG-Tags"],
-    "policy_set_definitions": ["Deploy-SQL-Auditing"],
+    "policy_set_definitions": ["LZ-Baseline"],
     "role_definitions": [],
     "archetype_config": {
       "access_control": {
@@ -313,7 +313,7 @@ Next, we will assign the Custom Policy Set that you previously created at the `L
 ```json
 {
   "extend_es_landing_zones": {
-    "policy_assignments": ["Deploy-SQL-Auditing"],
+    "policy_assignments": ["LZ-Baseline"],
     "policy_definitions": [""],
     "policy_set_definitions": [],
     "role_definitions": [],
@@ -325,7 +325,7 @@ Next, we will assign the Custom Policy Set that you previously created at the `L
 }
 ```
 
-You now need to run `Terraform Apply` again to apply the new configuration. When complete, the `Deploy-SQL-Auditing` policy set definition should be assigned.
+You now need to run `Terraform Apply` again to apply the new configuration. When complete, the `LZ-Baseline` policy set definition should be assigned.
 
 ```hcl
 terraform apply
