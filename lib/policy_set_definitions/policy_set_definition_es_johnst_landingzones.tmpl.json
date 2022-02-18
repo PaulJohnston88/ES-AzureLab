@@ -184,18 +184,6 @@
             "description": "Deploy the Transparent Data Encryption when it is not enabled in the deployment"
           }
       },
-        "Deploy Log Analytics extension for Linux VMs": {
-            "type": "String",
-            "defaultValue": "AuditIfNotExists",
-            "allowedValues": [
-              "AuditIfNotExists",
-              "Disabled"
-            ],
-            "metadata": {
-              "displayName": "Deploy Log Analytics extension for Linux VMs",
-              "description": "Deploy Log Analytics extension for Linux VMs if the VM Image (OS) is in the list defined and the extension is not installed."
-            }
-        },
         "Azure Active Directory Domain Services managed domains should use TLS 1.2 only mode": {
             "type": "String",
             "defaultValue": "Deny",
@@ -286,7 +274,7 @@
         },
         "Allowed locations": {
           "type": "Array",
-          "defaultValue": ["EastAsia","SouthEastAsia"],
+          "defaultValue": ["WestEurope","NorthEurope"],
           "metadata": {
             "displayName": "Allowed locations",
             "strongType": "location",
@@ -295,7 +283,7 @@
         },
         "Allowed locations for resource groups": {
             "type": "Array",
-            "defaultValue": ["EastAsia","SouthEastAsia"],
+            "defaultValue": ["WestEurope","NorthEurope"],
             "metadata": {
               "displayName": "Allowed locations for resource groups",
               "strongType": "location",
