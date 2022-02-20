@@ -2,7 +2,7 @@
 
 This page describes how to deploy Enterprise-Scale with custom policy definitions and policy set (Initiative) definitions.
 
-In this example we will use a policy named `Enforce-RG-Tags` and a  policy set definition (Initiative_) named `LZ-Baseline` as examples of how to create and assign custom policies.
+In this example we will use a policy named `Enforce-RG-Tags` and a  policy set definition (Initiative) named `LZ-Baseline` as examples of how to create and assign custom policies.
 
 We will update the built-in configuration by following these steps:
 
@@ -14,7 +14,7 @@ We will update the built-in configuration by following these steps:
 
 - Create the policy assignment files for `Enforce-RG-Tags` and `LZ-Baseline` so that they can be assigned
 
-- Assign the custom policy definition for `Enforce-RG-Tags` at the `root` Management Group by extending the built-in archetype for `es_root`.
+- Assign the custom policy definition for `Enforce-RG-Tags` at the `es_root` Management Group by extending the built-in archetype for `es_root`.
 
 - Assign the custom policy set definition for `LZ-Baseline` at the `Landing Zones` Management Group by extending the built-in archetype for `es_landing_zones`.
 
@@ -22,12 +22,14 @@ We will update the built-in configuration by following these steps:
 
 ## Create Custom Policy Definition
 
->IMPORTANT: To make the code easier to maintain when extending your configuration, we recommend using a custom library as explained in LINK
+>IMPORTANT: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
 
 In order to create and assign custom policies, we need to create both a definition file and an assignment file for each custom policy or custom policy set definition. In this example we will do this by using the below files:
 
 - [lib/policy_definitions/policy_definition_es_enforce_rg_tags.json](#libpolicy_definitions_policy_definition_es_enforce_rg_tagsjson)
-- [lib/policy_assignments/policy_assignment_es_policy_set_definition.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
+- [lib/policy_set_definitions/policy_set_definition_es_lz_baseline.json](#libpolicy_set_definitions_policy_set_definition_es_lz_baselinejson)
+- [lib/policy_assignments/policy_assignment_es_enforce_rg_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
+- [lib/policy_assignments/policy_assignment_es_lz_baseline.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
 
 In your `/lib` directory create a `policy_definitions` subdirectory.
 
@@ -119,7 +121,7 @@ In your `/lib` directory create a `policy_set_definitions` subdirectory.
 
 In the `policy_set_definitions` subdirectory, create a `policy_set_definition_es_lz_baseline.json` file. This file will contain the Policy Definition for `Enforce-RG-Tags`. Copy the below code in to the file and save it.
 
-- [lib/policy_set_definitions/policy_set_definition_es_root_baseline.json](#libpolicy_assignmentspolicy_assignment_dhh_policy_set_definitionjson)
+### `lib/policy_set_definitions/policy_set_definition_es_lz_baseline.json`
 
 ```json
 {
@@ -201,7 +203,7 @@ In your `/lib` directory create a `policy_assignments` subdirectory.
 
 - [lib/policy_assignments/policy_assignment_es_enforce_rg_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
 
-- [lib/policy_assignments/policy_assignment_es_lz_baseline.json](#libpolicy_assignmentspolicy_assignment_dhh_policy_set_definitionjson)
+- [lib/policy_assignments/policy_assignment_es_lz_baseline.json](#libpolicy_assignmentspolicy_assignment_es_lz_baselinejson)
 
 ### `lib/policy_assignments/policy_assignment_es_enforce_rg_tags.json`
 
@@ -257,9 +259,9 @@ In your `/lib` directory create a `policy_assignments` subdirectory.
 
 ## Make the Custom Policy Definition and Policy Set Definition available for use
 
-Now that you have created your custom policy definition and policy set definition files, we need to save them at the Intermediate Root Management Group to ensure they can be used at that scope or any scope beneath. To do that, we need to extend the built-in archetype for `es_root`.
+Now that you have created your custom policy and policy set definition files, we need to save them at the Intermediate Root Management Group to ensure they can be used at that scope or any scope beneath. To do that, we need to extend the built-in archetype for `es_root`. Extending built-in archetypes is explained further in [this article](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions).
 
-If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` folder, create one and copy the below code in to the file. This code saves the custom policy definition and policy set definition but we have not yet assigned them.
+If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` folder, create one and copy the below code in to the file. This code saves the custom policy definition and policy set definition but we have not yet assigned them anywhere.
 
 ```json
 {
@@ -283,7 +285,7 @@ terraform apply
 
 ## Assign the Custom Policy at the Intermediate Root Management Group
 
-You now need to assign the policy and in this example, we will assign it at `es_root`. To do this, update your existing `archetype_extension_es_root.tmpl.json` file with the below code and save it.
+You now need to assign the `Enforce-RG-Tags` policy and in this example, we will assign it at `es_root`. To do this, update your existing `archetype_extension_es_root.tmpl.json` file with the below code and save it.
 
 ```json
 {
@@ -300,7 +302,7 @@ You now need to assign the policy and in this example, we will assign it at `es_
 }
 ```
 
-You should now run `Terraform Apply` to apply the new configuration which will assign the `Enforce-RG-Tags` policy.
+You should now run `Terraform Apply` to apply the new configuration. This will assign the `Enforce-RG-Tags` policy at `es_root`.
 
 ```hcl
 terraform apply
@@ -308,7 +310,7 @@ terraform apply
 
 ## Assign the Custom Policy Set Definition at the Landing Zones Management Group
 
-Next, we will assign the Custom Policy Set that you previously created at the `Landing Zones` Management Group. To do this, either update your existing `archetype_extension_es_landing_zones.tmpl.json` file or create a new one with that name and copy the below code in to it and save.
+In the last step, you saved the `LZ-Baseline` Custom Policy Set at `es_root`. This gives us the ability to assign it at the `es_root` scope or at any scope beneath it. In this example, we will assign it at the `Landing Zones` Management Group. To do this, either update your existing `archetype_extension_es_landing_zones.tmpl.json` file or create one and copy the below code in to it and save.
 
 ```json
 {
