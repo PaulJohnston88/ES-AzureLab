@@ -37,7 +37,7 @@ In order to create and assign custom policies, we need to create both a definiti
 - [lib/policy_assignments/policy_assignment_es_enforce_rg_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
 - [lib/policy_assignments/policy_assignment_es_enforce_resource_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_resource_tagsjson)
 - [lib/policy_assignments/policy_assignment_es_deny_nic_nsg.json](#libpolicy_assignmentspolicy_assignment_es_deny_nic_nsgjson)
-- [lib/policy_assignments/policy_assignment_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
+- [lib/policy_assignments/policy_assignment_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_es_enforce_mandatory_taggingjson)
 
 In your `/lib` directory create a `policy_definitions` subdirectory if you don't already have one.
 
