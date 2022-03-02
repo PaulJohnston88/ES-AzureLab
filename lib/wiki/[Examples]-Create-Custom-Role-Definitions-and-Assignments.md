@@ -305,7 +305,7 @@ In order to assign your custom policies or policy sets, you need to create polic
 
 - [lib/policy_assignments/policy_assignment_es_enforce_rg_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
 - [lib/policy_assignments/policy_assignment_es_enforce_resource_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_resource_tagsjson)
-- [lib/policy_assignments/policy_assignment_es_deny_nsg_nic.json](#libpolicy_assignmentspolicy_assignment_es_deny_nsg_nic_tagsjson)
+- [lib/policy_assignments/policy_assignment_es_deny_nic_nsg.json](#libpolicy_assignmentspolicy_assignment_es_deny_nic_nsgjson)
 - [lib/policy_assignments/policy_assignment_es_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_es_enforce_mandatory_taggingjson)
 
 You will then need to create a file named `policy_assignment_es_enforce_rg_tags.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
