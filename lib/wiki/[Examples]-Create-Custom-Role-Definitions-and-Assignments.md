@@ -163,7 +163,7 @@ Now create a `policy_definition_es_policy_enforce_resource_tags.json` file. This
 
 Next create a `policy_definition_es_policy_deny_nsg_nic.json` file. This file will contain the policy definition for our last custom policy - `Deny-NSG-NIC`. Copy the below code in to the file and save it.
 
-### `lib/policy_definitions/policy_definition_es_deny_nsg_nic.json`
+### `lib/policy_definitions/policy_definition_es_deny_nic_nsg.json`
 
 ```json
 {
@@ -220,7 +220,7 @@ In your `/lib` directory create a `policy_set_definitions` subdirectory.
 
 In the `policy_set_definitions` subdirectory, create a `policy_set_definition_enforce_mandatory_tags.json` file. This file will contain the Policy Set Definition for `Enforce-Mandatory-Tags`. The policy set will contain the `Enforce-RG-Tags` and `Enforce-Resource-Tags` custom policies that you previously created. Copy the below code in to the file and save it.
 
-### `lib/policy_set_definitions/policy_set_definition_enforce_mandatory_tags.tmpl.json`
+### `lib/policy_set_definitions/policy_set_definition_enforce_mandatory_tagging.tmpl.json`
 
 ```json
 {
