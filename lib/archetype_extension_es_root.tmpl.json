@@ -1,17 +1,11 @@
 {
     "extend_es_root": {
-      "policy_assignments": ["Enforce-Criticality-Tag","CIS-v1.3.0","Johnst-Root","Johnst-Root-ID-Excl","Johnst-Root-Connect-Excl"],
-      "policy_definitions": ["Enforce-Criticality-Tag","Enforce-Hybrid-Use-Ben","Enforce-Mandatory-Tags","Deny-NIC-NSG","Core-Network-Locks",
-        "LZ-Network-Locks","Approved-VNet-Peerings","Deny-AnySource-NSG","Deny-PE-if-Not-in-Subnet","Onboard-to-DSC","Deny-PE-Naming-Con",
-        "Deny-SE-Naming-Con", "Enforce-Naming-Con"],
-      "policy_set_definitions": ["Johnst-LandingZones","Johnst-Root","Johnst-Root-Identity-Excluded","Johnst-Root-Connectivity-Excluded"],
-      "role_definitions": ["Security-Operations","Application-Owners","Azure-Platform-Owner","Network-Management","Subscription-Owners"],
+      "policy_assignments": ["Enforce-Mandatory-Tags","NIST-SP-800-53-Rev5"],
+      "policy_definitions": ["Enforce-Resource-Tags", "Enforce-RG-Tags", "Deny-NIC-NSG"],
+      "policy_set_definitions": ["Enforce-Mandatory-Tags"],
+      "role_definitions": [],
       "archetype_config": {
-        "parameters": {
-          "Johnst-Root": {
-            "Deploys NSG flow logs and traffic analytics to Log Analytics - Workspace": "/subscriptions/b7190f8a-860a-428c-a303-7231b1eb2f60/resourceGroups/pjpfe-mgmt/providers/Microsoft.OperationalInsights/workspaces/pjpfe-la"
-          }
-        },
+        "parameters": {},
         "access_control": {}
       }
     }

@@ -1,0 +1,57 @@
+{
+    "name": "Enforce-RG-Tags",
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "apiVersion": "2021-06-01",
+    "scope": null,
+      "properties": {
+        "displayName": "Resource groups must have mandatory tagging applied",
+        "policyType": "Custom",
+        "mode": "All",
+        "description": "Enforce mandatory 'Owner' and 'Department' tags on Resource Groups",
+        "metadata": {
+          "version": "1.0.0",
+          "category": "Tags"
+        },
+        "policyRule": {
+        "if": {
+            "allOf":[
+                {            
+                "field": "type",
+                "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+                },
+                {
+                "anyof": [
+                {
+                    "field": "[concat('tags[', parameters('Owner'), ']')]",
+                    "exists": "false"
+                },
+                {
+                    "field": "[concat('tags[', parameters('Department'), ']')]",
+                    "exists": "false"
+                }
+                ]
+            }
+            ]
+        },
+        "then": {
+            "effect": "deny"
+        }
+        },
+        "parameters": {
+            "Owner": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Owner",
+                    "description": "Specifies the Owner of the Resource Group'"
+                }
+            },
+            "Department": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Department",
+                    "description": "Specifies the Department that the Resource Group belongs to"
+                }
+            }
+        }
+    }
+}

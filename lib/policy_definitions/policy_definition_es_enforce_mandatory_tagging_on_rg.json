@@ -1,5 +1,5 @@
 {
-    "name": "Enforce-Mandatory-Tags",
+    "name": "Enforce-Tags",
     "type": "Microsoft.Authorization/policyDefinitions",
     "apiVersion": "2021-06-01",
     "scope": null,
@@ -76,7 +76,7 @@
                 "displayName": "Tag 1 Value",
                 "description": "Value of the tag, such as 'Joe Bloggs'"
                 },
-                "defaultValue": [""]
+                "defaultValue": []
             },
             "tag2Name": {
                 "type": "String",
@@ -92,7 +92,7 @@
                 "displayName": "Tag 2 Value",
                 "description": "Value of the tag, such as 'Joe Bloggs'"
                 },
-                "defaultValue": [""]
+                "defaultValue": []
             },     
             "tag3Name": {
                 "type": "String",
@@ -108,7 +108,7 @@
                 "displayName": "Tag 3 Value",
                 "description": "Value of the tag, such as 'Joe Bloggs'"
                 },
-                "defaultValue": [""]
+                "defaultValue": []
             },     
             "tag4Name": {
                 "type": "String",
@@ -124,7 +124,7 @@
                 "displayName": "Tag 4 Value",
                 "description": "Value of the tag, such as 'Joe Bloggs'"
                 },
-                "defaultValue": [""]
+                "defaultValue": []
             },     
             "tag5Name": {
                 "type": "String",
@@ -140,7 +140,7 @@
                 "displayName": "Tag 5 Value",
                 "description": "Value of the tag, such as 'Jane Doe'"
                 },
-                "defaultValue": [""]
+                "defaultValue": []
             },      
             "tag6Name": {
                 "type": "String",
@@ -180,7 +180,7 @@
                 "displayName": "Tag 4 Value",
                 "description": "Value of the tag, such as 'Joe Bloggs'"
                 },
-                "defaultValue": [""]
+                "defaultValue": []
             },      
             "tag8Name": {
                 "type": "String",
@@ -196,7 +196,7 @@
                 "displayName": "Tag 4 Value",
                 "description": "Value of the tag, such as 'Joe Bloggs'"
                 },
-                "defaultValue": [""]
+                "defaultValue": []
             }
         }
     }

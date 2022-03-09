@@ -1,0 +1,49 @@
+{
+"name": "Enforce-Resource-Tags",
+"type": "Microsoft.Authorization/policyDefinitions",
+"apiVersion": "2021-06-01",
+"scope": null,
+    "properties": {
+    "displayName": "Resources must have mandatory tagging applied",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "Enforce mandatory 'Owner' and 'Department' tags on Resources",
+    "metadata": {
+        "version": "1.0.0",
+        "category": "Tags"
+    },
+    "policyRule": {
+        "if": {
+            "anyof": [
+                {
+                    "field": "[concat('tags[', parameters('Owner'), ']')]",
+                    "exists": "false"
+                },
+                {
+                    "field": "[concat('tags[', parameters('Department'), ']')]",
+                    "exists": "false"
+                }
+                ]
+        },
+        "then": {
+            "effect": "deny"
+        }
+    },    
+        "parameters": {
+            "Owner": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Owner",
+                    "description": "Specifies the Owner of the resource"
+                }
+            },
+            "Department": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Department",
+                    "description": "Specifies the Department that the resource belongs to"
+                }
+            }
+        }
+    }
+}
