@@ -35,7 +35,7 @@ You will then need to create a file named `policy_assignment_not_allowed_resourc
 
 To find the appropriate value for `policyDefinitionID` you will need to locate the policy you want to use in the portal and copy the `Definition ID` value.
 
-****INSERT IMAGE***
+![Policy DefinitionID](./media/examples-assign-a-built-in-policy-definitionID.png)
 
 ### `lib/policy_assignments/policy_assignment_not_allowed_resource_types.json`
 
@@ -64,7 +64,7 @@ To find the appropriate value for `policyDefinitionID` you will need to locate t
 }
 ```
 
-Now create a file named `policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server` within the `policy_assignments` directory. Copy the below code in to the file and save it.
+Now create a file named `policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
 
 >**NOTE**: As this policy has an effect type of `DeployIfNotExists`, you also need to tell the module to create a System Assigned Managed Identity for the policy to use. This is done within the assignment file and would also be needed for any policy with a `Modify` effect type.
 
@@ -158,6 +158,8 @@ You now need to assign the `NIST SP 800-53 Rev. 5` policy set and in this exampl
 }
 ```
 
+You should now kick-off your Terraform workflow (init, plan, apply) to apply the new configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `NIST SP 800-53 Rev. 5` policy set will be assigned at `es_root`.
+
 ## Assign the `Not allowed resource types` Policy at the `Landing Zones` Management Group
 
 In this example, we will assign it at the `Landing Zones` Management Group. To do this, either update your existing `archetype_extension_es_landing_zones.tmpl.json` file or create one and copy the below code in to it and save.
@@ -177,7 +179,7 @@ In this example, we will assign it at the `Landing Zones` Management Group. To d
 }
 ```
 
-You should now kick-off your Terraform workflow again to apply the updated configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `XXXXX` Policy Definition will be assigned at the `Landing Zones` Management Group.
+You should now kick-off your Terraform workflow once again to apply the updated configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `Not allowed resource types` policy will be assigned at the `Landing Zones` Management Group.
 
 ```hcl
 terraform apply
