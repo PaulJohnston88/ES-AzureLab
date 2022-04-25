@@ -1,8 +1,12 @@
 ## Overview
 
-This page describes how to assign built-in Azure Policies to your Enterprise Scale deployment.
+This page describes how to assign built-in Azure Policies to your environment using the `caf-enterprise-scale` module.
 
-In this example you will use two built-in policies and one built-in policy set definition. You will use policies that are not already availble for assignment via the default  Enterprise Scale deployment. The policies you will use are `Not allowed resource types`  and `Deploy default Microsoft IaaSAntimalware extension for Windows Server`. The policy set definition (Initiative) you will use is  `NIST SP 800-53 Rev. 5`.
+In this example you will use two built-in policies and one built-in policy set definition. You will use policies that are not already available for assignment via the default Enterprise Scale deployment.
+
+The policies you will use are `Not allowed resource types` and `Deploy default Microsoft IaaSAntimalware extension for Windows Server`.
+
+The policy set definition (Initiative) you will use is `NIST SP 800-53 Rev. 5`.
 
 >**NOTE**: You can view which policies are recommended to be assigned as part of an Enterprise Scale deployment [here](https://github.com/Azure/Enterprise-Scale/blob/main/docs/ESLZ-Policies.md).
 
@@ -11,11 +15,17 @@ You will update the built-in configuration by following these steps:
 - Create the policy assignment files for `Not allowed resource types`, `Deploy default Microsoft IaaSAntimalware extension for Windows Server` and `NIST SP 800-53 Rev. 5`. You will also configure the `listOfResourceTypesNotAllowed` parameter within the `Not allowed resource types` assignment file to prevent the creation of Azure Firewalls
 - Assign the policy definition for `Deploy default Microsoft IaaSAntimalware extension for Windows Server` at the `es_root` Management Group by extending the built-in archetype for `es_root`
 - Assign the policy set definition for `NIST SP 800-53 Rev. 5` at the `es_root` Management Group by extending the built-in archetype for `es_root`
-- Assign the policy definition for `Not allowed resource types` at the `Landing Zones` Management Group by extending the built-in archetype for `es_landing_zones`. 
+- Assign the policy definition for `Not allowed resource types` at the `Landing Zones` Management Group by extending the built-in archetype for `es_landing_zones`.
 
->IMPORTANT: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
+>**IMPORTANT**: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
 
-In order to assign built-in policies, there needs to be an assignment file for each policy or policy set definition that we want to use. This module already includes assignment files for some built-in policies so it's important to check whether or not one exists before creating your own. You can do this by navigating to  `\modules\archetypes\lib\policy_assignments` and looking for an assignment file that matches the policy you want to assign. An example of a built-in policy that already has an assignment file included within the module is the `Kubernetes clusters should be accessible only over HTTPS` policy. The assignment file for this policy is called `policy_assignment_es_deny_http_ingress_aks.tmpl.json`.
+In order to assign built-in policies, there needs to be an assignment file for each policy or policy set definition that we want to use.
+This module already includes assignment files for some built-in policies so it's important to check whether or not one exists before creating your own.
+You can do this by navigating to  [`\modules\archetypes\lib\policy_assignments`](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib) and looking for an assignment file that matches the policy you want to assign.
+
+An example of a built-in policy that already has an assignment file included within the module is the `Kubernetes clusters should be accessible only over HTTPS` policy. The assignment file for this policy is called `policy_assignment_es_deny_http_ingress_aks.tmpl.json`.
+
+>**NOTE**: You can view the module lib directly [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib)
 
 As the policies you will use in this example do not already have an assignment file within the module, you will need to create the below files so that you can assign them:
 
@@ -31,9 +41,9 @@ In order to assign built-in policies or policy sets, you need to create policy a
 
 You will then need to create a file named `policy_assignment_not_allowed_resource_types.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
 
->**NOTE**: The `name` parameter in the assignment file has an upper limit of 24 characters. Values longer than this will result in a validation error. As an example, `"Not allowed resources` fits but `"Not allowed resource types"` would result in an error.
+>**NOTE**: The full file name is not important but it does need to meet the naming conventions detailed [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions#working-with-archetype-definitions-and-the-custom-library)
 
-To find the appropriate value for `policyDefinitionID` you will need to locate the policy you want to use in the portal and copy the `Definition ID` value.
+To assign the correct policy, we need to provide the appropriate value for `policyDefinitionID` within our assignment file. You can retrieve the PolicyDefinitionID for your policy either through the Azure Portal, [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azpolicydefinition?view=azps-7.3.0) or the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/policy/definition?view=azure-cli-latest)
 
 ![Policy DefinitionID](./media/examples-assign-a-built-in-policy-definitionID.png)
 
@@ -63,6 +73,8 @@ To find the appropriate value for `policyDefinitionID` you will need to locate t
     }
 }
 ```
+
+**IMPORTANT**: The `name` parameter in the assignment file has an upper limit of 24 characters. Values longer than this will result in a validation error. As an example, `"Not allowed resources` fits but `"Not allowed resource types"` would result in an error.
 
 Now create a file named `policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
 
@@ -120,7 +132,7 @@ Finally, create an assignment file for the policy set named `policy_assignment_n
 
 ## Assign the `Deploy default Microsoft IaaSAntimalware extension for Windows Server` Policy at the `es_root` Management Group
 
-You now need to assign the `Deploy default Microsoft IaaSAntimalware extension for Windows Server` policy and in this example, we will assign it at `es_root`. If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file. 
+You now need to assign the `Deploy default Microsoft IaaSAntimalware extension for Windows Server` policy and in this example, we will assign it at `es_root`. If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file.
 
 ```json
 {
@@ -141,7 +153,7 @@ You should now kick-off your Terraform workflow (init, plan, apply) to apply the
 
 ## Assign the `NIST SP 800-53 Rev. 5` Policy Set at the `es_root` Management Group
 
-You now need to assign the `NIST SP 800-53 Rev. 5` policy set and in this example, we will assign it at `es_root`. Copy the below code in to your `archetype_extension_es_root.tmpl.json` file and save it. 
+You now need to assign the `NIST SP 800-53 Rev. 5` policy set and in this example, we will assign it at `es_root`. Copy the below code in to your `archetype_extension_es_root.tmpl.json` file and save it.
 
 ```json
 {
@@ -180,9 +192,5 @@ In this example, we will assign it at the `Landing Zones` Management Group. To d
 ```
 
 You should now kick-off your Terraform workflow once again to apply the updated configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `Not allowed resource types` policy will be assigned at the `Landing Zones` Management Group.
-
-```hcl
-terraform apply
-```
 
 You have now successfully assigned a built-in Policy Definition and a built-in Policy Set Definition within your Azure environment. You can re-use the guidance in this article for any other built-in policies that you may wish to use within your environment.
