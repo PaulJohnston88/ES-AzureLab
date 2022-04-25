@@ -1,6 +1,6 @@
 {
   "extend_es_landing_zones": {
-    "policy_assignments": ["Deny-NIC-NSG", "Not-Allowed-Resources"],
+    "policy_assignments": [],
     "policy_definitions": [],
     "policy_set_definitions": [],
     "role_definitions": [],
