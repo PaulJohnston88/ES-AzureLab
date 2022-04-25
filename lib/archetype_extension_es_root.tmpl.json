@@ -1,9 +1,9 @@
 {
     "extend_es_root": {
-      "policy_assignments": ["Enforce-Mandatory-Tags","NIST-SP-800-53-Rev5"],
+      "policy_assignments": ["Enforce-Resource-Tags", "Johnst-Root"],
       "policy_definitions": ["Enforce-Resource-Tags", "Enforce-RG-Tags", "Deny-NIC-NSG"],
-      "policy_set_definitions": ["Enforce-Mandatory-Tags"],
-      "role_definitions": [],
+      "policy_set_definitions": ["Enforce-Mandatory-Tags", "Johnst-Root"],
+      "role_definitions": ["Application-Owners", "Azure-Platform-Owner", "Network-Management", "Security-Operations", "Subscription-Owner"],
       "archetype_config": {
         "parameters": {},
         "access_control": {}

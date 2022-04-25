@@ -3,7 +3,7 @@
     "type": "Microsoft.Authorization/roleDefinitions",
     "apiVersion": "2018-01-01-preview",
     "properties": {
-        "roleName": "Subscription-Owners",
+        "roleName": "Subscription-Owner",
         "description": "Delegated role for subscription owner generated from subscription Owner role",
         "type": "customRole",
         "permissions": [
