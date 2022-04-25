@@ -25,7 +25,7 @@ provider "azurerm" {
 # This will be used for the deployment of all "Connectivity resources" to the specified `subscription_id`.
 provider "azurerm" {
   alias           = "connectivity"
-  subscription_id = "e0583bb4-bb6c-44b8-9b39-72b0d4a1a6eb"
+  subscription_id = "35277960-2541-4e84-bf1d-528415f89969"
   features {}
 }
 
@@ -33,7 +33,7 @@ provider "azurerm" {
 # This will be used for the deployment of all "Management resources" to the specified `subscription_id`.
 provider "azurerm" {
   alias           = "management"
-  subscription_id = "b7190f8a-860a-428c-a303-7231b1eb2f60"
+  subscription_id = "a2089b2e-2696-4a5b-beda-785ae1b316d2"
   features {}
 }
 
