@@ -1,4 +1,4 @@
-/*  resource "azurerm_resource_group" "rg-weu-connectivity" {
+ resource "azurerm_resource_group" "rg-weu-connectivity" {
    provider = azurerm.connectivity
    name     = "pjpfe-rg-weu-con-001"
    location = "west europe"
@@ -109,4 +109,4 @@ resource "azurerm_firewall" "neuvhubfw" {
   virtual_hub {
     virtual_hub_id = azurerm_virtual_hub.vwanhubneu.id
   }
-}  */
+} 
