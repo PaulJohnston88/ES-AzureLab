@@ -26,6 +26,11 @@ module "enterprise_scale" {
   subscription_id_connectivity     = "e0583bb4-bb6c-44b8-9b39-72b0d4a1a6eb"
   subscription_id_identity         = "d161faf2-87a1-4b24-9425-7262dc2d83f0"
 
+  subscription_id_overrides = {
+    "sandboxes" = ["14aa966e-b42e-47ae-90c7-b3fa858b5db6"]
+    "landing-zones" = ["829ac3c2-d6b0-4e8c-9dd2-3ad20c4282ce"]
+  }
+
   custom_landing_zones = {
     "${var.root_id}-online" = {
       display_name               = "${upper(var.root_id)} Online"
