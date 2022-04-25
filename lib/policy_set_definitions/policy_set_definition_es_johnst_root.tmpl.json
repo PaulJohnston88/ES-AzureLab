@@ -460,11 +460,6 @@
           "groupNames": []
         },
         {
-          "policyDefinitionReferenceId": "Enforce hybrid use benefit",
-          "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Enforce-Hybrid-Use-Ben",
-          "groupNames": []
-        },
-        {
             "policyDefinitionReferenceId": "Managed identity should be used in your Function App",
             "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0da106f2-4ca3-48e8-bc85-c638fe6aea8f",
             "parameters": {
