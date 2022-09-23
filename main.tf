@@ -5,7 +5,7 @@
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.4"
+  version = "2.3.1"
 
   providers = {
     azurerm              = azurerm

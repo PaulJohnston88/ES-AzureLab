@@ -1,0 +1,54 @@
+{
+    "properties": {
+        "displayName": "Key Vault - Firewall Settings",
+        "mode": "All",
+        "description": "This Azure Policy adds the specified IPs to the 'Allow access from' setting.",
+        "parameters": {
+            "policyEffect": {
+                "type": "String",
+                "allowedvalues": [
+                    "audit",
+                    "append"
+                ],
+                "metadata": {
+                    "displayName": "Policy Effect",
+                    "description": "The Policy Effect associated with this Policy Definition"
+                },
+                "defaultValue": "append"
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.KeyVault/vaults"
+                    },
+                    {
+                        "anyOf":[
+                            {
+                                "allOf": [
+                                    {
+                                        "count": {
+                                            "field": "Microsoft.KeyVault/vaults/networkAcls.ipRules[*]"
+                                        },
+                                        "equals": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('policyEffect')]",
+                "details": [
+                    {
+                        "field": "Microsoft.KeyVault/vaults/networkAcls.ipRules[*].value",
+                        "value": ["147.148.73.107","147.148.73.108"]
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -3,10 +3,11 @@
       "policy_assignments": [],
       "policy_definitions": ["Enforce-Resource-Tags", "Enforce-RG-Tags", "Deny-NIC-NSG"],
       "policy_set_definitions": ["Enforce-Mandatory-Tags", "Johnst-Root"],
-      "role_definitions": ["Application-Owners", "Azure-Platform-Owner", "Network-Management", "Security-Operations", "Subscription-Owner"],
+      "role_definitions": ["Application-Owners", "Azure-Platform-Owner", "Network-Management", "Security-Operations", "Subscription-Owner","Reader-Support-Tickets"],
       "archetype_config": {
         "parameters": {},
-        "access_control": {}
+        "access_control": {
+        }
       }
     }
   }

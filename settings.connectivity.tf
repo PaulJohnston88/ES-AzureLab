@@ -18,6 +18,15 @@ locals {
                 address_prefix           = "10.100.1.0/24"
                 gateway_sku_expressroute = "ErGw2AZ"
                 gateway_sku_vpn          = ""
+                advanced_vpn_settings = {
+                  enable_bgp                       = null
+                  active_active                    = null
+                  private_ip_address_allocation    = ""
+                  default_local_network_gateway_id = ""
+                  vpn_client_configuration         = []
+                  bgp_settings                     = []
+                  custom_route                     = []
+                }
               }
             }
             azure_firewall = {
@@ -30,10 +39,17 @@ locals {
                   zone_2 = true
                   zone_3 = true
                 }
+                dns_servers                   = []
+                sku_tier                      = ""
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
               }
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = true
+            enable_hub_network_mesh_peering = false
           }
         },
         {
@@ -51,6 +67,15 @@ locals {
                 address_prefix           = "10.101.1.0/24"
                 gateway_sku_expressroute = ""
                 gateway_sku_vpn          = "VpnGw2AZ"
+                advanced_vpn_settings = {
+                  enable_bgp                       = null
+                  active_active                    = null
+                  private_ip_address_allocation    = ""
+                  default_local_network_gateway_id = ""
+                  vpn_client_configuration         = []
+                  bgp_settings                     = []
+                  custom_route                     = []
+                }
               }
             }
             azure_firewall = {
@@ -63,14 +88,106 @@ locals {
                   zone_2 = true
                   zone_3 = true
                 }
+                dns_servers                   = []
+                sku_tier                      = ""
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
               }
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = true
+            enable_hub_network_mesh_peering = false
           }
         },
       ]
-      vwan_hub_networks = []
+      vwan_hub_networks = [
+        {
+          enabled = false
+          config = {
+            address_prefix = "10.200.0.0/22"
+            location       = "northeurope"
+            sku            = ""
+            routes         = []
+            expressroute_gateway = {
+              enabled = true
+              config = {
+                scale_unit = 1
+              }
+            }
+            vpn_gateway = {
+              enabled = false
+              config = {
+                bgp_settings       = []
+                routing_preference = ""
+                scale_unit         = 1
+              }
+            }
+            azure_firewall = {
+              enabled = true
+              config = {
+                enable_dns_proxy              = true
+                dns_servers                   = []
+                sku_tier                      = "Standard"
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
+                availability_zones = {
+                  zone_1 = true
+                  zone_2 = true
+                  zone_3 = true
+                }
+              }
+            }
+            spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections     = false
+          }
+        },
+        {
+          enabled = false
+          config = {
+            address_prefix = "10.201.0.0/22"
+            location       = "westeurope"
+            sku            = ""
+            routes         = []
+            expressroute_gateway = {
+              enabled = false
+              config = {
+                scale_unit = 1
+              }
+            }
+            vpn_gateway = {
+              enabled = true
+              config = {
+                bgp_settings       = []
+                routing_preference = ""
+                scale_unit         = 1
+              }
+            }
+            azure_firewall = {
+              enabled = false
+              config = {
+                enable_dns_proxy              = true
+                dns_servers                   = []
+                sku_tier                      = "Standard"
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
+                availability_zones = {
+                  zone_1 = true
+                  zone_2 = true
+                  zone_3 = true
+                }
+              }
+            }
+            spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections     = false
+          }
+        },
+      ]
       ddos_protection_plan = {
         enabled = false
         config = {

@@ -2,21 +2,21 @@
 
 variable "root_id" {
   type    = string
-  default = "pjpfe"
+  default = "contoso"
 }
 
 variable "root_name" {
   type    = string
-  default = "PJPFE ES"
+  default = "CONTOSO"
 }
 
 variable "deploy_core_landing_zones" {
   type    = bool
-  default = true
+  default = false
 }
 variable "deploy_connectivity_resources" {
   type    = bool
-  default = true
+  default = false
 }
 
 variable "connectivity_resources_location" {
@@ -32,7 +32,7 @@ variable "connectivity_resources_tags" {
 }
 variable "deploy_management_resources" {
   type    = bool
-  default = true
+  default = false
 }
 
 variable "log_retention_in_days" {

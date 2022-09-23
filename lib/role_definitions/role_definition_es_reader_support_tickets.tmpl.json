@@ -1,17 +1,15 @@
 {
-    "name": "dc726155-3983-5405-b446-9bb27b94e02c",
+    "name": "fe3be6c9-778c-55a3-a0b6-586f48c02202",
     "type": "Microsoft.Authorization/roleDefinitions",
     "apiVersion": "2018-01-01-preview",
     "properties": {
-        "roleName": "Network-Management",
-        "description": "Platform-wide global connectivity management: virtual networks, UDRs, NSGs, NVAs, VPN, Azure ExpressRoute, and others",
+        "roleName": "Reader-Support-Tickets",
+        "description": "View everything in the subscription and also open support tickets.",
         "type": "customRole",
         "permissions": [
             {
                 "actions": [
-                    "*/read", 
-                    "Microsoft.Network/*", 
-                    "Microsoft.Resources/deployments/*", 
+                    "*/read",
                     "Microsoft.Support/*"
                 ],
                 "notActions": [],

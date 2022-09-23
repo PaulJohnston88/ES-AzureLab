@@ -3,14 +3,15 @@
     "policy_assignments": ["Deny-Resource-Locations"],
     "policy_definitions": [],
     "policy_set_definitions": [],
-    "role_definitions": [],
+    "role_definitions": ["Reader-Support-Tickets"],
     "archetype_config": {
       "parameters": {
         "Deny-Resource-Locations": {
-          "listOfAllowedLocations": ["eastus", "westus"]
+          "listOfAllowedLocations": ["northeurope", "westeurope", "eastus2", "westcentralus"]
         }
       },
-      "access_control": {}
+      "access_control": {
+      }
     }
   }
 }
