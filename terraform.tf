@@ -4,11 +4,9 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.0.2"
+      version = "~> 3.107"
       configuration_aliases = [
         azurerm.connectivity,
-        azurerm.spoke1,
-        azurerm.spoke2
       ]
     }
   }
@@ -26,7 +24,7 @@ provider "azurerm" {
 # This will be used for the deployment of all "Connectivity resources" to the specified `subscription_id`.
 provider "azurerm" {
   alias           = "connectivity"
-  subscription_id = "35277960-2541-4e84-bf1d-528415f89969"
+  subscription_id = "3441441c-93d4-4e85-aef4-08f3f178ba71"
   features {}
 }
 
@@ -34,7 +32,7 @@ provider "azurerm" {
 # This will be used for the deployment of all "Management resources" to the specified `subscription_id`.
 provider "azurerm" {
   alias           = "management"
-  subscription_id = "a2089b2e-2696-4a5b-beda-785ae1b316d2"
+  subscription_id = "3441441c-93d4-4e85-aef4-08f3f178ba71"
   features {}
 }
 

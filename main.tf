@@ -5,7 +5,9 @@
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.3.1"
+  version = "6.0.0"
+
+  default_location = "northeurope"
 
   providers = {
     azurerm              = azurerm
@@ -20,16 +22,16 @@ module "enterprise_scale" {
 
   deploy_core_landing_zones        = var.deploy_core_landing_zones
   deploy_management_resources      = var.deploy_management_resources
-  subscription_id_management       = "a2089b2e-2696-4a5b-beda-785ae1b316d2"
+  subscription_id_management       = "3441441c-93d4-4e85-aef4-08f3f178ba71"
   deploy_connectivity_resources    = var.deploy_connectivity_resources
   configure_connectivity_resources = local.configure_connectivity_resources
-  subscription_id_connectivity     = "35277960-2541-4e84-bf1d-528415f89969"
-  subscription_id_identity         = "0be64ae6-ef49-4cf0-b88f-4689aacaa317"
+  subscription_id_connectivity     = "3441441c-93d4-4e85-aef4-08f3f178ba71"
+  subscription_id_identity         = "3441441c-93d4-4e85-aef4-08f3f178ba71"
 
-  subscription_id_overrides = {
+/*   subscription_id_overrides = {
     "sandboxes" = ["5329ee2f-5c1f-4a2c-8a21-8850ab27057f"]
-    "landing-zones" = ["e9df7556-4ca8-4e12-bcc5-55d29dd7fd5d", "2587c9bd-2181-43d1-8bfa-20216d4a13e0"]
-  }
+    "landing-zones" = ["e9df7556-4ca8-4e12-bcc5-55d29dd7fd5d"]
+  } */
 
   custom_landing_zones = {
     "${var.root_id}-online" = {
